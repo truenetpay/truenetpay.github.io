@@ -33,23 +33,6 @@ body {
   color: white;
 }
 
-/* HEADER (без меню) */
-.header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 20px 40px;
-}
-
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo { width: 40px; }
-.brand { font-size: 22px; font-weight: 600; }
-
 /* HERO */
 .hero {
   display: flex;
@@ -60,6 +43,23 @@ body {
 }
 
 .left { max-width: 520px; }
+
+/* BRAND BLOCK */
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.brand-block img {
+  width: 42px;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 600;
+}
 
 h1 {
   font-size: 48px;
@@ -103,7 +103,7 @@ h1 {
   color: #cbd5e1;
 }
 
-/* TRUST BLOCK */
+/* TRUST */
 .trust {
   margin-top: 25px;
   font-size: 14px;
@@ -121,7 +121,7 @@ h1 {
   text-decoration: none;
 }
 
-/* RIGHT IMAGE */
+/* RIGHT */
 .right img {
   width: 480px;
 }
@@ -136,32 +136,31 @@ h1 {
     padding: 20px;
   }
 
+  .brand-block {
+    justify-content: center;
+  }
+
   h1 { font-size: 32px; }
 
   .right img {
     width: 220px;
     margin-top: 20px;
   }
-
-  .header { padding: 15px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="logo-wrap">
-    <img src="/logo.png" class="logo">
-    <div class="brand">TrueNET</div>
-  </div>
-</div>
-
-<!-- HERO -->
 <div class="hero">
 
   <div class="left">
+
+    <!-- 🔥 БРЕНД -->
+    <div class="brand-block">
+      <img src="/shield.png">
+      <div class="brand-name">TrueNET</div>
+    </div>
 
     <h1>
       Не массовый сервис.<br>
