@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrueNET — Оплата</title>
 
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: url("bg.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 380px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+.logo-img {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #cbd5f5;
+    margin: 10px 0 15px;
+}
+
+.features {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #dbeafe;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.status {
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.timer {
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #93c5fd;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.footer {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.order-box {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.order-box:hover {
+    opacity: 1;
+    color: #cbd5f5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo.png" class="logo-img">
+<div class="logo">TrueNET</div>
+
+<div class="subtitle">
+Персональные серверные решения для стабильного и безопасного доступа в Интернет
+</div>
+
+<div class="features">
+✔ Стабильный доступ<br>
+✔ Индивидуальная настройка<br>
+✔ Конфиденциальность
+</div>
+
+<div id="price" class="price">Загрузка...</div>
+<div id="orderBox" class="order-box" style="display:none;">
+  🧾 Заказ: <span id="orderId"></span>
+</div>
+<div id="status" class="status"></div>
+<div id="timer" class="timer"></div>
+
+<form id="form">
+<input type="text" name="name" placeholder="Ваше имя" required>
+<input type="email" name="email" placeholder="Ваш email" required>
+<input type="text" name="tg" placeholder="Telegram (не обязательно)">
+<button id="btn">Перейти к оплате</button>
+</form>
+
+<div class="footer">
+После оплаты на указанную почту будет отправлен чек
+</div>
+
+</div>
+
+<script>
+const API = "https://proxy-uxtj.onrender.com";
+const orderId = new URLSearchParams(location.search).get("order");
+
+let paymentLink = null;
+
+const priceEl = document.getElementById("price");
+const statusEl = document.getElementById("status");
+const timerEl = document.getElementById("timer");
+const form = document.getElementById("form");
+const btn = document.getElementById("btn");
+const orderBox = document.getElementById("orderBox");
+const orderIdEl = document.getElementById("orderId");
+
+let orderData = null;
+
+// ===== LOAD =====
+async function loadOrder() {
+
+  try {
+    const res = await fetch(API + "?order=" + orderId);
+    if (!res.ok) throw new Error();
+
+    const data = await res.json();
+    orderData = data;
+
+    paymentLink = data.pay;
+
+    priceEl.innerText = data.price + " ₽";
+
+    orderIdEl.innerText = orderId;
+    orderBox.style.display = "block";
+
+    updateUI();
+    fillForm(data);
+    startTimer();
+
+  } catch {
+    priceEl.innerText = "❌ Ссылка недействительна";
+    disableAll();
+  }
+}
+
+orderBox.addEventListener("click", () => {
+  navigator.clipboard.writeText(orderId);
+  orderBox.innerText = "✅ Скопировано";
+});
+
+// ===== TIMER =====
+let timerInterval;
+
+function startTimer() {
+
+  if (!orderData.startedAt) return;
+
+  const end = orderData.startedAt + 60 * 60 * 1000;
+
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+
+    // 🔥 стоп если оплачено или проверка
+    if (orderData.status === "paid" || orderData.status === "checking") {
+      clearInterval(timerInterval);
+      timerEl.innerText = "";
+      return;
+    }
+
+    const left = end - Date.now();
+
+    if (left <= 0) {
+      statusEl.innerText = "❌ Ссылка истекла";
+      timerEl.innerText = "";
+      disableAll();
+      clearInterval(timerInterval);
+      return;
+    }
+
+    const m = Math.floor(left / 60000);
+    const s = Math.floor((left % 60000) / 1000);
+
+    timerEl.innerText = `${m}:${s.toString().padStart(2,'0')}`;
+
+  }, 1000);
+}
+
+// ===== UI =====
+function updateUI() {
+
+  if (!paymentLink) {
+    btn.classList.add("disabled");
+    btn.innerText = "Недоступно";
+  }
+
+  if (orderData.status === "new") {
+    statusEl.innerText = "⏳ Ожидает оплаты";
+  }
+
+  if (orderData.status === "checking") {
+    statusEl.innerText = "⌛ Проверка оплаты...";
+    btn.classList.add("disabled");
+    btn.innerText = "Проверка...";
+  }
+
+  if (orderData.status === "paid") {
+    statusEl.innerText = "✅ Оплачено";
+    disableAll();
+  }
+
+  if (orderData.status === "expired") {
+    statusEl.innerText = "❌ Ссылка истекла";
+    disableAll();
+  }
+}
+
+// ===== FORM =====
+function fillForm(data) {
+
+  if (!data.customer) return;
+
+  form.name.value = data.customer.name || "";
+  form.email.value = data.customer.email || "";
+  form.tg.value = data.customer.tg || "";
+
+  form.querySelectorAll("input").forEach(i => i.disabled = true);
+}
+
+// ===== DISABLE =====
+function disableAll() {
+  btn.classList.add("disabled");
+  form.querySelectorAll("input").forEach(i => i.disabled = true);
+}
+
+// ===== SUBMIT =====
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (!paymentLink) {
+    alert("Оплата недоступна");
+    return;
+  }
+
+  btn.innerText = "Отправка...";
+
+  await fetch(API + "/submit", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      order: orderId,
+      name: form.name.value,
+      email: form.email.value,
+      tg: form.tg.value
+    })
+  });
+
+  btn.innerText = "Переход...";
+
+  setTimeout(() => {
+    window.location.href = paymentLink;
+  }, 500);
+});
+
+// автообновление
+setInterval(loadOrder, 5000);
+
+// старт
+loadOrder();
+
+</script>
+
+</body>
+</html>
