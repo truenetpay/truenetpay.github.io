@@ -7,7 +7,7 @@
 <link rel="icon" href="/favicon.svg">
 
 <!-- Yandex Metrika -->
-<script type="text/javascript">
+<script>
 (function(m,e,t,r,i,k,a){
 m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 m[i].l=1*new Date();
@@ -22,7 +22,6 @@ ym(XXXXXXXX, "init", {
   accurateTrackBounce:true
 });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/XXXXXXXX" style="position:absolute; left:-9999px;" /></div></noscript>
 
 <style>
 * { box-sizing: border-box; }
@@ -34,15 +33,12 @@ body {
   color: white;
 }
 
-/* ===== HEADER ===== */
+/* HEADER (без меню) */
 .header {
   position: absolute;
   top: 0;
   width: 100%;
   padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .logo-wrap {
@@ -51,21 +47,10 @@ body {
   gap: 10px;
 }
 
-.logo {
-  width: 40px;
-}
+.logo { width: 40px; }
+.brand { font-size: 22px; font-weight: 600; }
 
-.brand {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.nav {
-  font-size: 14px;
-  color: #cbd5e1;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero {
   display: flex;
   align-items: center;
@@ -74,10 +59,7 @@ body {
   padding: 0 60px;
 }
 
-/* LEFT */
-.left {
-  max-width: 520px;
-}
+.left { max-width: 520px; }
 
 h1 {
   font-size: 48px;
@@ -101,21 +83,15 @@ h1 {
   transition: 0.2s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-}
+.btn:hover { transform: scale(1.05); }
 
-/* FEATURES */
 .features {
   margin-top: 25px;
   font-size: 16px;
 }
 
-.features div {
-  margin: 8px 0;
-}
+.features div { margin: 8px 0; }
 
-/* PRICE */
 .price {
   margin-top: 25px;
   font-size: 28px;
@@ -125,7 +101,24 @@ h1 {
 .price span {
   font-size: 14px;
   color: #cbd5e1;
-  font-weight: normal;
+}
+
+/* TRUST BLOCK */
+.trust {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* TELEGRAM */
+.telegram {
+  margin-top: 20px;
+}
+
+.telegram a {
+  color: #60a5fa;
+  text-decoration: none;
 }
 
 /* RIGHT IMAGE */
@@ -133,7 +126,7 @@ h1 {
   width: 480px;
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media (max-width: 768px) {
 
   .hero {
@@ -143,19 +136,14 @@ h1 {
     padding: 20px;
   }
 
-  h1 {
-    font-size: 32px;
-  }
+  h1 { font-size: 32px; }
 
   .right img {
     width: 220px;
     margin-top: 20px;
   }
 
-  .header {
-    padding: 15px;
-  }
-
+  .header { padding: 15px; }
 }
 </style>
 </head>
@@ -168,15 +156,11 @@ h1 {
     <img src="/logo.png" class="logo">
     <div class="brand">TrueNET</div>
   </div>
-  <div class="nav">
-    Главная &nbsp;&nbsp; О нас &nbsp;&nbsp; Тарифы
-  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
 
-  <!-- LEFT -->
   <div class="left">
 
     <h1>
@@ -196,16 +180,25 @@ h1 {
       <div>✔ только ваш трафик</div>
       <div>✔ стабильная скорость</div>
       <div>✔ без перегрузок</div>
-      <div>✔ настройка 5–10 минут</div>
+      <div>✔ быстрая настройка</div>
     </div>
 
     <div class="price">
       от 2700 ₽ <span>(включая первый месяц)</span>
     </div>
 
+    <div class="trust">
+      ✔ Гарантия работоспособности<br>
+      ✔ Работаю официально<br>
+      ✔ Поддержка после подключения
+    </div>
+
+    <div class="telegram">
+      Вопросы: <a href="https://t.me/@truenet_support" target="_blank">@truenet_support</a>
+    </div>
+
   </div>
 
-  <!-- RIGHT -->
   <div class="right">
     <img src="/shield.png">
   </div>
