@@ -120,18 +120,20 @@ h1 {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 1px;
+}
 
-  background: linear-gradient(90deg, #60a5fa, #2563eb, #1e40af);
+/* TRUE — читаемый */
+.brand-name .true {
+  color: #e5e7eb; /* светло-серый почти белый */
+}
+
+/* NET — акцент */
+.brand-name .net {
+  background: linear-gradient(90deg, #60a5fa, #2563eb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 0 12px rgba(59,130,246,0.4);
-}
-
-/* акцент NET */
-.brand-name span {
-  color: #93c5fd;
-  -webkit-text-fill-color: #93c5fd;
+  text-shadow: 0 0 12px rgba(59,130,246,0.6);
 }
 
 /* MOBILE */
@@ -170,7 +172,7 @@ h1 {
 
     <h1>
       Ваш личный сервер.<br>
-      Персональный канал доступа.
+      Защищенный доступ в Интернет.
     </h1>
 
     <div class="subtitle">
@@ -208,7 +210,9 @@ h1 {
   <!-- RIGHT -->
   <div class="right">
     <img src="/shield.png">
-    <div class="brand-name">True<span>NET</span></div>
+    <div class="brand-name">
+      <span class="true">True</span><span class="net">NET</span>
+    </div>
   </div>
 
 </div>
