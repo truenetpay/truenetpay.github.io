@@ -47,19 +47,14 @@ body::before {
     box-shadow: 0 25px 60px rgba(0,0,0,0.6);
 }
 
-/* GRID */
-.plans {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+.price {
+    font-size: 20px;
+    margin-top: 10px;
 }
 
-@media (min-width: 768px) {
-    .container { max-width: 700px; }
-    .plans { grid-template-columns: repeat(3, 1fr); }
-}
-
-.plan {
+/* ADDONS */
+.addon {
+    margin-top: 10px;
     padding: 14px;
     border-radius: 12px;
     background: rgba(255,255,255,0.08);
@@ -67,24 +62,15 @@ body::before {
     transition: 0.2s;
 }
 
-.plan:hover {
+.addon:hover {
     background: rgba(255,255,255,0.15);
 }
 
-.plan.active {
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
+.addon.active {
+    background: linear-gradient(90deg, #10b981, #059669);
 }
 
-.recommended {
-    font-size: 11px;
-    color: #93c5fd;
-}
-
-.price {
-    font-size: 18px;
-    margin-top: 5px;
-}
-
+/* BUTTON */
 button {
     font-family: inherit;
     width: 100%;
@@ -136,56 +122,49 @@ button {
 1 IPv4 • 500 Mbit/s<br><br>
 
 <span style="color:#93c5fd">
-Подходит для 10–20 активных пользователей без потери скорости
+Подходит для 10–20 активных пользователей
 </span>
+
+<div class="price">
+Базовая настройка — <b>2700 ₽</b>
+</div>
+
+<div class="note">
+Включено: настройка + подключение до 2 устройств + поддержка 14 дней
+</div>
+
+<div class="highlight">
+Первый месяц включён, далее ~250 ₽/мес напрямую
+</div>
 
 </div>
 
 <div class="card">
 
-<b>Выбор срока (разовый платёж)</b>
+<b>Дополнительные опции</b>
 
-<div class="plans">
-
-<div class="plan" onclick="selectPlan(this,2700)">
-1 месяц
-<div class="price">2700 ₽</div>
+<div class="addon" onclick="toggleAddon(this,300)">
+📱 Подключение всех устройств
+<div class="note">Настройка более 2 устройств • +300 ₽</div>
 </div>
 
-<div class="plan active" onclick="selectPlan(this,3200)">
-<div class="recommended">рекомендуем</div>
-3 месяца
-<div class="price">3200 ₽</div>
+<div class="addon" onclick="toggleAddon(this,600)">
+🔄 Поддержка после настройки
+<div class="note">Помощь при вопросах или сбоях • +600 ₽</div>
+<div class="note">Можно подключить позже при необходимости</div>
 </div>
 
-<div class="plan" onclick="selectPlan(this,3800)">
-6 месяцев
-<div class="price">3800 ₽</div>
-</div>
-
-<div class="plan" onclick="selectPlan(this,5000)">
-12 месяцев
-<div class="price">5000 ₽</div>
-</div>
-
-<div class="plan" onclick="selectPlan(this,7000)">
-24 месяца
-<div class="price">7000 ₽</div>
-</div>
-
+<div class="addon" onclick="toggleAddon(this,500)">
+🚀 Приоритетная настройка
+<div class="note">Настройка вне очереди • +500 ₽</div>
 </div>
 
 <button onclick="createOrder()">
-Перейти к оплате — <span id="priceLabel">3200 ₽</span>
+Перейти к оплате — <span id="priceLabel">2700 ₽</span>
 </button>
 
 <div class="note">
-Оплата производится один раз за выбранный период
-</div>
-
-<div class="highlight">
-После настройки сервера вы получаете доступ в личный кабинет, где самостоятельно сможете оплатить период аренды<br>
-Продление сервера — всего 250 ₽/месяц
+Все опции оплачиваются один раз. Подписки отсутствуют.
 </div>
 
 </div>
@@ -207,17 +186,30 @@ button {
 </div>
 
 <script>
-let price = 3200;
+let basePrice = 2700;
+let addons = [];
 
-function selectPlan(el, p){
-  document.querySelectorAll('.plan').forEach(e => e.classList.remove('active'));
-  el.classList.add('active');
+function toggleAddon(el, price){
 
-  price = p;
-  document.getElementById("priceLabel").innerText = p + " ₽";
+  if (el.classList.contains("active")) {
+    el.classList.remove("active");
+    addons = addons.filter(a => a !== price);
+  } else {
+    el.classList.add("active");
+    addons.push(price);
+  }
+
+  updatePrice();
+}
+
+function updatePrice(){
+  const total = basePrice + addons.reduce((a,b)=>a+b,0);
+  document.getElementById("priceLabel").innerText = total + " ₽";
 }
 
 async function createOrder(){
+
+  const total = basePrice + addons.reduce((a,b)=>a+b,0);
 
   const res = await fetch("https://your-proxy.onrender.com/create", {
     method:"POST",
@@ -225,8 +217,9 @@ async function createOrder(){
       "Content-Type":"application/json"
     },
     body: JSON.stringify({
-      price: price,
-      ttl: 3600
+      price: total,
+      ttl: 3600,
+      addons: addons
     })
   });
 
