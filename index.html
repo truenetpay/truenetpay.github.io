@@ -183,6 +183,16 @@ h1 {
     padding: 20px;
   }
 }
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: url("/bg.webp") no-repeat center/cover;
+
+  /* 🔥 ключевые строки */
+  transform: translateZ(0);
+  will-change: transform;
+}
 </style>
 </head>
 
@@ -240,4 +250,5 @@ h1 {
 </div>
 
 </body>
+<div class="bg"></div>
 </html>
