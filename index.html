@@ -30,8 +30,15 @@ setTimeout(() => {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: url("/bg.webp") no-repeat center/cover fixed;
   color: white;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/bg.webp") no-repeat center/cover;
+  z-index: -1;
 }
 
 img {
