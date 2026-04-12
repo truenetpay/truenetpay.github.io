@@ -44,13 +44,14 @@ body::before {
 }
 
 .logo-img {
-    width: 100px;
+    width: 120px;
     margin-bottom: 10px;
 }
 
 .logo {
     font-size: 26px;
     font-weight: bold;
+    background: linear-gradient(90deg, #1ddeff, #ffffff);
 }
 
 .subtitle {
@@ -152,7 +153,8 @@ button.disabled {
 
 <div id="price" class="price">Загрузка...</div>
 <div id="orderBox" class="order-box" style="display:none;">
-  🧾 Заказ: <span id="orderId"></span>
+  <span id="orderLabel">🧾 Заказ: </span>
+  <span id="orderId"></span>
 </div>
 <div id="status" class="status"></div>
 <div id="timer" class="timer"></div>
