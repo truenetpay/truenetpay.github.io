@@ -5,21 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TrueNET</title>
 <link rel="icon" href="/favicon.svg">
+<link rel="preload" as="image" href="/bg.webp">
 
-<script>
-(function(m,e,t,r,i,k,a){
-m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-m[i].l=1*new Date();
-k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
-})
-(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<script defer>
+setTimeout(() => {
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+    k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-ym(XXXXXXXX, "init", {
-  clickmap:true,
-  trackLinks:true,
-  accurateTrackBounce:true
-});
+  ym(XXXXXXXX, "init", {
+    clickmap:true,
+    trackLinks:true,
+    accurateTrackBounce:true
+  });
+}, 2000);
 </script>
 
 <style>
@@ -28,8 +30,13 @@ ym(XXXXXXXX, "init", {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: url("/bg.png") no-repeat center/cover fixed;
+  background: url("/bg.webp") no-repeat center/cover;
   color: white;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 .hero {
@@ -39,6 +46,7 @@ body {
   height: 100vh;
   padding: 0 60px;
   padding-bottom: 40px;
+  will-change: transform;
 }
 
 .left { max-width: 560px; }
@@ -212,7 +220,7 @@ h1 {
   </div>
 
   <div class="right">
-    <img src="/shield.png">
+    <img src="/shield.webp" loading="lazy" width="450" height="450">
     <div class="brand-name">
       <span class="true">True</span><span class="net">NET</span>
     </div>
