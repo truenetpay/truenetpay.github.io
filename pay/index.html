@@ -51,7 +51,18 @@ body::before {
 .logo {
     font-size: 26px;
     font-weight: bold;
-    background: linear-gradient(90deg, #1ddeff, #ffffff);
+}
+
+.logo .true {
+  color: #e5e7eb;
+}
+
+.logo .net {
+  background: linear-gradient(90deg, #1ddeff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 12px rgba(59,130,246,0.6);
 }
 
 .subtitle {
@@ -139,7 +150,7 @@ button.disabled {
 <div class="container">
 
 <img src="/shield.webp" class="logo-img">
-<div class="logo">TrueNET</div>
+<div class="logo"><span class="true">True</span><span class="net">NET</span></div>
 
 <div class="subtitle">
 Персональный сервер для стабильного и безопасного доступа к нужным сервисам
@@ -215,10 +226,16 @@ async function loadOrder() {
   }
 }
 
+const labelEl = document.getElementById("orderLabel");
+
 orderBox.addEventListener("click", () => {
   navigator.clipboard.writeText(orderId);
-  orderBox.innerText = "✅ Скопировано";
-  setTimeout(() => orderBox.innerText = orderId, 2000);
+
+  labelEl.textContent = "✅ Скопировано";
+
+  setTimeout(() => {
+    labelEl.textContent = "🧾 Заказ: ";
+  }, 2000);
 });
 
 // ===== TIMER =====
