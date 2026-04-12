@@ -6,6 +6,7 @@
 <title>TrueNET — Тарифы</title>
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/bg.webp">
 
 <style>
 * { box-sizing: border-box; }
@@ -13,7 +14,7 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: url("/bg.png") no-repeat center center fixed;
+    background: url("/bg.webp") no-repeat center center;
     background-size: cover;
     color: white;
 }
@@ -243,7 +244,7 @@ const antiBot = {
 </script>
 
 <script>
-let basePrice = 2700;
+let basePrice = 2499;
 let addons = [];
 
 function toggleAddon(el, price){
