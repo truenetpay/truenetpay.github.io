@@ -198,7 +198,17 @@ ym(108510887, "init", {
       Привычные сервисы работают с перебоями? Решение — персональный сервер
     </div>
 
-    <button class="btn" onclick="window.location.href='/tariffs/'">
+    <script>
+      function goTariffs() {
+        ym(108510887, 'reachGoal', 'go_to_tariffs');
+
+        setTimeout(() => {
+          window.location.href = '/tariffs/';
+        }, 100);
+      }
+    </script>
+
+    <button class="btn" onclick="goTariffs()">
       Получить свой сервер
     </button>
 
