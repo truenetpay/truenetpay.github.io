@@ -307,18 +307,7 @@ async function createOrder(){
       return;
     }
 
-  // const data = await res.json();
-    const text = await res.text();
-    console.log("SERVER RESPONSE:", text);
-
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch (e) {
-      alert("Ошибка сервера");
-      console.error(text);
-      return;
-    }
+  const data = await res.json();
   btn.innerText = "Переход...";
 
   window.location.href = data.link;
