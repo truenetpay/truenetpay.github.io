@@ -25,52 +25,48 @@ setTimeout(() => {
 </script>
 
 <style>
-* { box-sizing: border-box; }
-
-html {
-  height: 100%;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: white;
-  position: relative;
-  background: black;
-  height: 100%;
   overflow-x: hidden;
+  background: #000;
 }
 
-body::before {
-  content: "";
+.bg {
   position: fixed;
   inset: 0;
   background: url("/bg.webp") no-repeat center/cover;
-  z-index: -1;
-  pointer-events: none;
-}
 
-img {
-  display: block;
-  max-width: 100%;
+  /* GPU ускорение */
+  transform: translateZ(0);
+  will-change: transform;
+  z-index: 0;
 }
 
 .hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 100svh;
-  padding: 0 60px;
-  padding-bottom: 40px;
-  will-change: transform;
   position: relative;
   z-index: 1;
 
-  /* 🔥 важно */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 100svh;
+  padding: 0 60px 40px;
+
   transform: translateZ(0);
 }
 
-.left { max-width: 560px; }
+.left {
+  max-width: 560px;
+}
 
 h1 {
   font-size: 48px;
@@ -94,14 +90,18 @@ h1 {
   transition: 0.2s;
 }
 
-.btn:hover { transform: scale(1.05); }
+.btn:hover {
+  transform: scale(1.05);
+}
 
 .features {
   margin-top: 25px;
   font-size: 16px;
 }
 
-.features div { margin: 8px 0; }
+.features div {
+  margin: 8px 0;
+}
 
 .price {
   margin-top: 25px;
@@ -135,7 +135,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px
 }
 
 .right img {
@@ -156,27 +155,23 @@ h1 {
   background: linear-gradient(90deg, #1ddeff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   text-shadow: 0 0 12px rgba(59,130,246,0.6);
 }
 
 @media (max-width: 1023px) {
-  
   h1 {
     font-size: 32px;
   }
 }
 
 @media (max-width: 870px) {
-
   .hero {
     flex-direction: column;
-    /* justify-content: center; */
     text-align: center;
+    padding: 20px;
   }
 
   .right {
-    flex-direction: column;
     margin-top: 20px;
   }
 
@@ -187,17 +182,13 @@ h1 {
   .brand-name {
     font-size: 28px;
   }
-
-  h1 {
-    font-size: 32px;
-    padding: 20px;
-  }
 }
 </style>
 </head>
 
 <body>
-
+<div class="bg"></div>
+  
 <div class="hero">
 
   <div class="left">
