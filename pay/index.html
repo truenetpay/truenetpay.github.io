@@ -226,6 +226,8 @@ async function loadOrder() {
     const data = await res.json();
     orderData = data;
 
+    ym(108510887, 'reachGoal', 'open_payment_page');
+
     paymentLink = data.pay;
 
     priceEl.innerText = data.price + " ₽";
