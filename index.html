@@ -254,6 +254,10 @@ h1 {
   cursor:pointer;
 }
 
+#chatSend:active {
+  transform: translateY(5px);
+}
+
 #chatFormOverlay {
   position: absolute;
   inset: 0;
@@ -549,7 +553,7 @@ function escapeHtml(text){
     .replace(/>/g, "&gt;");
 }
 
-setInterval(loadChat, 1500);
+setInterval(loadChat, 1000);
 
 loadChat();
 </script>
