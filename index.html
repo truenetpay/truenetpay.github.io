@@ -255,7 +255,7 @@ h1 {
 }
 
 #chatSend:active {
-  transform: translateZ(5px);
+  transform: translateZ(-10px);
 }
 
 #chatFormOverlay {
@@ -539,7 +539,7 @@ async function loadChat(){
       </div>
     `).join("");
 
-    el.scrollTop = el.scrollHeight;
+    //el.scrollTop = el.scrollHeight;
 
   } catch (e) {
     console.error("load error", e);
@@ -553,7 +553,7 @@ function escapeHtml(text){
     .replace(/>/g, "&gt;");
 }
 
-setInterval(loadChat, 1000);
+setInterval(loadChat, 3000);
 
 loadChat();
 </script>
