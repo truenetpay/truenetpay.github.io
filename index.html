@@ -333,7 +333,27 @@ ym(108510887, "init", {
     </div>
   </div>
 
-<script>
+</div>
+
+<div id="chatWidget">
+  <div id="chatBubble">💬</div>
+
+  <div id="chatBox">
+    <div id="chatHeader">
+      Поддержка
+      <span id="chatClose">✕</span>
+    </div>
+
+    <div id="chatMessages"></div>
+
+    <div id="chatInputWrap">
+      <input id="chatInput" placeholder="Напишите сообщение...">
+      <button id="chatSend">➤</button>
+    </div>
+  </div>
+</div>
+
+  <script>
 const API = "https://proxy-uxtj.onrender.com/chat";
 
 function getClientId(){
@@ -428,24 +448,5 @@ async function loadChat(){
 setInterval(loadChat, 3000);
 loadChat();
 </script>  
-</div>
-
-<div id="chatWidget">
-  <div id="chatBubble">💬</div>
-
-  <div id="chatBox">
-    <div id="chatHeader">
-      Поддержка
-      <span id="chatClose">✕</span>
-    </div>
-
-    <div id="chatMessages"></div>
-
-    <div id="chatInputWrap">
-      <input id="chatInput" placeholder="Напишите сообщение...">
-      <button id="chatSend">➤</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
