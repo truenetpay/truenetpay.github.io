@@ -417,13 +417,22 @@ ym(108510887, "init", {
   </div>
 
   <div class="telegram">
-    Остались вопросы? Напишите нам<br>
-    Telegram: <a class="link" href="https://t.me/truenet_support" target="_blank">@truenet_support</a><br>
+    Остались вопросы? Напишите нам в <span id="chatOpen">Чат</span><br>
+    Или в Telegram: <a class="link" href="https://t.me/truenet_support" target="_blank">@truenet_support</a><br>
     Email: <span class="email">truenetcomp@gmail.com</span>
   </div>
 
 </div>
   </div>
+  
+  <div class="right">
+    <img src="/shield.webp" loading="lazy">
+    <div class="brand-name">
+      <span class="true">True</span><span class="net">NET</span>
+    </div>
+  </div>
+
+</div>
 
   <section style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
 
@@ -434,7 +443,7 @@ ym(108510887, "init", {
   <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.6;">
     
     <div style="margin:20px 0;">
-      <b>1.</b> Нажимаете «Подключиться» и выбираете тариф
+      <b>1.</b> Нажимаете «Подключиться» и выбираете сервер и необходимые опции
     </div>
 
     <div style="margin:20px 0;">
@@ -481,17 +490,17 @@ ym(108510887, "init", {
   <section style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
 
   <h2 style="font-size:28px; margin-bottom:20px;">
-    Подключение доступно не всегда
+    Подключение ограничено
   </h2>
 
   <div style="max-width:700px; margin:0 auto; font-size:16px; color:#cbd5e1;">
     
     <p>
-      Количество доступных серверов ограничено.
+      Лимитированное количество доступных серверов.
     </p>
 
     <p style="margin-top:10px;">
-      Иногда свободных ресурсов нет — подключение временно закрывается.
+      Иногда свободных ресурсов нет — подключение временно останавливается.
     </p>
 
   </div>
@@ -502,14 +511,6 @@ ym(108510887, "init", {
 
 </section>
 
-  <div class="right">
-    <img src="/shield.webp" loading="lazy">
-    <div class="brand-name">
-      <span class="true">True</span><span class="net">NET</span>
-    </div>
-  </div>
-
-</div>
 
 <div id="chatWidget">
   <div id="chatBubble">💬</div>
@@ -557,6 +558,7 @@ const bubble = document.getElementById("chatBubble");
 const box = document.getElementById("chatBox");
 const closeBtn = document.getElementById("chatClose");
 const sendBtn = document.getElementById("chatSend");
+const chat = document.getElementById("chatOpen");
 
 const formOverlay = document.getElementById("chatFormOverlay");
 const formBtn = document.getElementById("chatFormBtn");
@@ -582,7 +584,7 @@ function checkUser(){
   return localStorage.getItem("user_saved") === "1";
 }
 
-bubble.onclick = () => {
+function openChat(){
   box.style.display = "flex";
 
   if (!checkUser()) {
@@ -593,7 +595,11 @@ bubble.onclick = () => {
   } else {
     formOverlay.style.display = "none";
   }
-};
+}
+
+chat.onclick = openChat();
+
+bubble.onclick = openChat();
 
 document.getElementById("chatInput").addEventListener("keydown", e=>{
   if(e.key === "Enter") sendMsg();
