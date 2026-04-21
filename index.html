@@ -424,7 +424,7 @@
       </div>
 
       <div class="price">
-        2499 ₽
+        от 2499 ₽
         <span>Первый месяц аренды сервера включен,<br>далее ~250 ₽/мес напрямую провайдеру</span>
       </div>
 
@@ -617,6 +617,8 @@
         }, 100);
       } else {
         formOverlay.style.display = "none";
+        const el = document.getElementById("chatMessages");
+        el.scrollTop = el.scrollHeight;
       }
     }
 
@@ -680,6 +682,9 @@
         })
       });
 
+      const el = document.getElementById("chatMessages");
+      el.scrollTop = el.scrollHeight;
+
       input.value = "";
       loadChat();
     }
@@ -720,7 +725,7 @@
       </div>
     `).join("");
 
-        el.scrollTop = el.scrollHeight;
+      // el.scrollTop = el.scrollHeight;
 
       } catch (e) {
         console.error("load error", e);
