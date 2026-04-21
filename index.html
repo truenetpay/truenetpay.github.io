@@ -1,430 +1,443 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="yandex-verification" content="897eb20abe6f85ef" />
-<title>TrueNET</title>
-<link rel="icon" href="/favicon.svg">
-<link rel="preload" as="image" href="/bg.webp">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="yandex-verification" content="897eb20abe6f85ef" />
+  <title>TrueNET</title>
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preload" as="image" href="/bg.webp">
 
-<style>
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  color: white;
-  overflow-x: hidden;
-  background: url("/bg.webp") center / cover no-repeat;
-}
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background: url("/bg.webp") center / cover no-repeat;
+    }
 
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  min-height: 100svh;
-  padding: 0 60px 40px;
+      min-height: 100svh;
+      padding: 0 60px 40px;
 
-  transform: translateZ(0);
-}
+      transform: translateZ(0);
+    }
 
-.left {
-  max-width: 560px;
-}
+    .left {
+      max-width: 560px;
+    }
 
-h1 {
-  font-size: 48px;
-  line-height: 1.2;
-  margin-bottom: 15px;
-  font-weight: 800;
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      font-weight: 800;
 
-  background: linear-gradient(180deg, #ffffff, #cbd5f5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+      background: linear-gradient(180deg, #ffffff, #cbd5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
 
-.subtitle {
-  color: #cbd5e1;
-  margin-bottom: 25px;
-}
+    .subtitle {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+    }
 
-.btn {
-  padding: 14px 28px;
-  font-size: 18px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-  color: white;
-  transition: 0.2s;
-}
+    .btn {
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: white;
+      transition: 0.2s;
+    }
 
-.btn:hover {
-  transform: scale(1.05);
-}
+    .btn:hover {
+      transform: scale(1.05);
+    }
 
-.features {
-  margin-top: 25px;
-  font-size: 16px;
-}
+    .features {
+      margin-top: 25px;
+      font-size: 16px;
+    }
 
-.features div {
-  margin: 8px 0;
-}
+    .features div {
+      margin: 8px 0;
+    }
 
-.price {
-  margin-top: 25px;
-  font-size: 28px;
-  font-weight: bold;
-}
+    .price {
+      margin-top: 25px;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-.price span {
-  font-size: 14px;
-  color: #cbd5e1;
-  display: block;
-}
+    .price span {
+      font-size: 14px;
+      color: #cbd5e1;
+      display: block;
+    }
 
-.trust {
-  margin-top: 25px;
-  font-size: 14px;
-  color: #cbd5e1;
-  line-height: 1.6;
-}
+    .trust {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
 
-.telegram {
-  margin-top: 20px;
-}
+    .telegram {
+      margin-top: 20px;
+    }
 
-.telegram a {
-  color: #60a5fa;
-  text-decoration: none;
-}
+    .telegram a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
 
-.right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.right img {
-  width: 450px;
-}
+    .right img {
+      width: 450px;
+    }
 
-.brand-name {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
+    .brand-name {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
 
-.brand-name .true {
-  color: #e5e7eb;
-}
+    .brand-name .true {
+      color: #e5e7eb;
+    }
 
-.brand-name .net {
-  background: linear-gradient(90deg, #1ddeff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 12px rgba(59,130,246,0.6);
-}
+    .brand-name .net {
+      background: linear-gradient(90deg, #1ddeff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    }
 
-@media (max-width: 1023px) {
-  h1 {
-    font-size: 32px;
-  }
-}
+    @media (max-width: 1023px) {
+      h1 {
+        font-size: 32px;
+      }
+    }
 
-@media (max-width: 870px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
+    @media (max-width: 870px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
 
-  .right {
-    margin-top: 20px;
-  }
+      .right {
+        margin-top: 20px;
+      }
 
-  .right img {
-    width: 180px;
-  }
+      .right img {
+        width: 180px;
+      }
 
-  .brand-name {
-    font-size: 28px;
-  }
-}
+      .brand-name {
+        font-size: 28px;
+      }
+    }
 
-#chatBubble {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 58px;
-  height: 58px;
-  background: linear-gradient(90deg, #004084, #3483ff);
-  border-radius: 50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  cursor:pointer;
-  z-index:9999;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-}
+    #chatBubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(90deg, #004084, #3483ff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
 
-#chatBubble:active {
-  transform: translateY(3px);
-}
+    #chatBubble:active {
+      transform: translateY(3px);
+    }
 
-#chatBubble:hover {
-    transform: scale(1.02);
-}
+    #chatBubble:hover {
+      transform: scale(1.02);
+    }
 
-#chatSend:hover {
-    transform: scale(1.02);
-}
+    #chatSend:hover {
+      transform: scale(1.02);
+    }
 
-#chatClose:hover {
-    transform: scale(1.02);
-}
+    #chatClose:hover {
+      transform: scale(1.02);
+    }
 
-#chatBox {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 340px;
-  height: 460px;
-  background: #0b0f19;
-  border-radius: 18px;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index:9999;
-}
+    #chatOpen {
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: #2E9AFF;
+      text-decoration-thickness: 2px;
+    }
 
-#chatHeader {
-  padding: 14px;
-  background: linear-gradient(90deg, #004084, #2a4d84);
-  font-weight: 600;
-  display:flex;
-  justify-content:space-between;
-}
+    #chatOpen:hover {
+      transition: transform 0.3s;
+    }
 
-#chatClose {
-  cursor:pointer;
-}
+    #chatBox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 460px;
+      background: #0b0f19;
+      border-radius: 18px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+    }
 
-#chatClose:active {
-  transform: translateY(3px);
-}
+    #chatHeader {
+      padding: 14px;
+      background: linear-gradient(90deg, #004084, #2a4d84);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
 
-#chatMessages {
-  flex:1;
-  padding:12px;
-  overflow-y:auto;
-  font-size:14px;
-  background: #ffffff;
-}
+    #chatClose {
+      cursor: pointer;
+    }
 
-.msg {
-  margin:6px 0;
-  max-width:75%;
-  padding:8px 10px;
-  border-radius:10px;
-}
+    #chatClose:active {
+      transform: translateY(3px);
+    }
 
-.msg-client {
-  background:#00419c;
-  margin-left:auto;
-}
+    #chatMessages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      font-size: 14px;
+      background: #ffffff;
+    }
 
-.msg-support {
-  background:#455872;
-}
+    .msg {
+      margin: 6px 0;
+      max-width: 75%;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
 
-#chatInputWrap {
-  display:flex;
-  border-top:1px solid rgba(255,255,255,0.05);
-}
+    .msg-client {
+      background: #00419c;
+      margin-left: auto;
+    }
 
-#chatInput {
-  flex:1;
-  padding:12px;
-  border:none;
-  outline:none;
-  background: #e1e1e1;
-  color: black;
-}
+    .msg-support {
+      background: #455872;
+    }
 
-#chatSend {
-  width:60px;
-  border:none;
-  background: linear-gradient(90deg, #004084, #3483ff);
-  color:white;
-  cursor:pointer;
-}
+    #chatInputWrap {
+      display: flex;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-#chatSend:active {
-  transform: translateY(3px);
-}
+    #chatInput {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      outline: none;
+      background: #e1e1e1;
+      color: black;
+    }
 
-#chatFormOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
+    #chatSend {
+      width: 60px;
+      border: none;
+      background: linear-gradient(90deg, #004084, #3483ff);
+      color: white;
+      cursor: pointer;
+    }
 
-#chatForm {
-  width: 85%;
-  background: #111827;
-  padding: 20px;
-  border-radius: 14px;
-  text-align: center;
-}
+    #chatSend:active {
+      transform: translateY(3px);
+    }
 
-.formTitle {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
+    #chatFormOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
 
-#chatForm input {
-  width: 100%;
-  margin: 6px 0;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #1f2937;
-  color: white;
-}
+    #chatForm {
+      width: 85%;
+      background: #111827;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+    }
 
-#chatForm button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-}
+    .formTitle {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
 
-#chatFormBtn:hover {
-    transform: scale(1.02);
-}
+    #chatForm input {
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #1f2937;
+      color: white;
+    }
 
-#chatFormBtn:active {
-  transform: translateY(3px);
-}
+    #chatForm button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
 
-.link {
-  color: #25e0f6;
-}
+    #chatFormBtn:hover {
+      transform: scale(1.02);
+    }
 
-.email {
-  letter-spacing: 0.1em;
-}
-</style>
+    #chatFormBtn:active {
+      transform: translateY(3px);
+    }
 
-<script>
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-    k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
-})
-(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    .link {
+      color: #25e0f6;
+    }
 
-ym(108510887, "init", {
-  clickmap:true,
-  trackLinks:true,
-  accurateTrackBounce:true,
-  webvisor:true
-});
-</script>
+    .email {
+      letter-spacing: 0.1em;
+    }
+  </style>
+
+  <script>
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0];
+      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(108510887, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
 </head>
 
 <body>
-  
-<div class="hero">
 
-<div class="left">
+  <div class="hero">
 
-  <h1>
-    Работает всегда.<br>
-    Без перебоев и ограничений
-  </h1>
+    <div class="left">
 
-  <div class="subtitle">
-    Персональный сервер для стабильного доступа к сервисам.<br>
-    Полная приватность и высокая скорость без ограничений
+      <h1>
+        Работает всегда.<br>
+        Без перебоев и ограничений
+      </h1>
+
+      <div class="subtitle">
+        Персональный сервер для стабильного доступа к сервисам.<br>
+        Полная приватность и высокая скорость без ограничений
+      </div>
+
+      <script>
+        function goTariffs() {
+          ym(108510887, 'reachGoal', 'go_to_tariffs');
+
+          setTimeout(() => {
+            window.location.href = '/tariffs/';
+          }, 100);
+        }
+      </script>
+
+      <div class="subtitle" style="margin-top:15px; font-size:14px;">
+        Подключение за 24 часа. Без сложных настроек. Работает на всех устройствах
+      </div>
+
+      <button class="btn" onclick="goTariffs()">
+        Подключиться сейчас
+      </button>
+
+      <div class="features">
+        <div>✔ Стабильная работа без перебоев</div>
+        <div>✔ Без ограничений скорости и трафика</div>
+        <div>✔ Только ваш сервер — полный контроль</div>
+        <div>✔ До 20 устройств (семья / команда)</div>
+        <div>✔ Запуск под ключ за 24 часа</div>
+      </div>
+
+      <button class="btn" onclick="goTariffs()" style="margin-top:15px;">
+        Получить доступ
+      </button>
+
+      <div class="price">
+        от 2499 ₽
+        <span>Первый месяц сервера включен, далее ~250 ₽/мес напрямую провайдеру</span>
+      </div>
+
+      <div class="trust">
+        ✔ Уже используют частные пользователи и команды<br>
+        ✔ Поддержка после подключения<br>
+        ✔ Официальная оплата (чек)<br>
+        ✔ Настройка без вашего участия<br>
+        ✔ Полный контроль над доступом
+      </div>
+
+      <div class="telegram">
+        Остались вопросы? Напишите нам в <span id="chatOpen">Чат</span><br>
+        Или в Telegram: <a class="link" href="https://t.me/truenet_support" target="_blank">@truenet_support</a><br>
+        Email: <span class="email">truenetcomp@gmail.com</span>
+      </div>
+
+    </div>
   </div>
 
-  <script>
-    function goTariffs() {
-      ym(108510887, 'reachGoal', 'go_to_tariffs');
-
-      setTimeout(() => {
-        window.location.href = '/tariffs/';
-      }, 100);
-    }
-  </script>
-
-  <div class="subtitle" style="margin-top:15px; font-size:14px;">
-    Подключение за 24 часа. Без сложных настроек. Работает на всех устройствах
-  </div>
-
-  <button class="btn" onclick="goTariffs()">
-    Подключиться сейчас
-  </button>
-
-  <div class="features">
-    <div>✔ Стабильная работа без перебоев</div>
-    <div>✔ Без ограничений скорости и трафика</div>
-    <div>✔ Только ваш сервер — полный контроль</div>
-    <div>✔ До 20 устройств (семья / команда)</div>
-    <div>✔ Запуск под ключ за 24 часа</div>
-  </div>
-
-  <button class="btn" onclick="goTariffs()" style="margin-top:15px;">
-  Получить доступ
-</button>
-
-  <div class="price">
-    от 2499 ₽ 
-    <span>Первый месяц сервера включен, далее ~250 ₽/мес напрямую провайдеру</span>
-  </div>
-
-  <div class="trust">
-    ✔ Уже используют частные пользователи и команды<br>
-    ✔ Поддержка после подключения<br>
-    ✔ Официальная оплата (чек)<br>
-    ✔ Настройка без вашего участия<br>
-    ✔ Полный контроль над доступом
-  </div>
-
-  <div class="telegram">
-    Остались вопросы? Напишите нам в <span id="chatOpen">Чат</span><br>
-    Или в Telegram: <a class="link" href="https://t.me/truenet_support" target="_blank">@truenet_support</a><br>
-    Email: <span class="email">truenetcomp@gmail.com</span>
-  </div>
-
-</div>
-  </div>
-  
   <div class="right">
     <img src="/shield.webp" loading="lazy">
     <div class="brand-name">
@@ -432,142 +445,140 @@ ym(108510887, "init", {
     </div>
   </div>
 
-</div>
-
   <section style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
 
-  <h2 style="font-size:28px; margin-bottom:20px;">
-    Как это работает
-  </h2>
+    <h2 style="font-size:28px; margin-bottom:20px;">
+      Как это работает
+    </h2>
 
-  <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.6;">
-    
-    <div style="margin:20px 0;">
-      <b>1.</b> Нажимаете «Подключиться» и выбираете сервер и необходимые опции
+    <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.6;">
+
+      <div style="margin:20px 0;">
+        <b>1.</b> Нажимаете «Подключиться» и выбираете сервер и необходимые опции
+      </div>
+
+      <div style="margin:20px 0;">
+        <b>2.</b> Мы настраиваем сервер под вас
+      </div>
+
+      <div style="margin:20px 0;">
+        <b>3.</b> Вы получаете доступ и пользуетесь без ограничений
+      </div>
+
     </div>
 
-    <div style="margin:20px 0;">
-      <b>2.</b> Мы настраиваем сервер под вас
-    </div>
+    <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
+      Подключиться сейчас
+    </button>
 
-    <div style="margin:20px 0;">
-      <b>3.</b> Вы получаете доступ и пользуетесь без ограничений
-    </div>
-
-  </div>
-
-  <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-    Подключиться сейчас
-  </button>
-
-</section>
+  </section>
 
   <section style="padding:60px 20px; text-align:center;">
 
-  <h2 style="font-size:28px; margin-bottom:20px;">
-    Почему это работает стабильно
-  </h2>
+    <h2 style="font-size:28px; margin-bottom:20px;">
+      Почему это работает стабильно
+    </h2>
 
-  <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.7;">
-    
-    <p>
-      Вы не используете общий сервис.  
-      У вас собственный сервер — поэтому нет перегрузок и ограничений.
-    </p>
+    <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.7;">
 
-    <p style="margin-top:15px;">
-      Доступ принадлежит только вам — никто не влияет на скорость и стабильность.
-    </p>
+      <p>
+        Вы не используете общий сервис.
+        У вас собственный сервер — поэтому нет перегрузок и ограничений.
+      </p>
 
-    <p style="margin-top:15px;">
-      Это решение используют как для личного использования, так и для работы и команд.
-    </p>
+      <p style="margin-top:15px;">
+        Доступ принадлежит только вам — никто не влияет на скорость и стабильность.
+      </p>
 
-  </div>
+      <p style="margin-top:15px;">
+        Это решение используют как для личного использования, так и для работы и команд.
+      </p>
 
-</section>
+    </div>
+
+  </section>
 
   <section style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
 
-  <h2 style="font-size:28px; margin-bottom:20px;">
-    Подключение ограничено
-  </h2>
+    <h2 style="font-size:28px; margin-bottom:20px;">
+      Подключение ограничено
+    </h2>
 
-  <div style="max-width:700px; margin:0 auto; font-size:16px; color:#cbd5e1;">
-    
-    <p>
-      Лимитированное количество доступных серверов.
-    </p>
+    <div style="max-width:700px; margin:0 auto; font-size:16px; color:#cbd5e1;">
 
-    <p style="margin-top:10px;">
-      Иногда свободных ресурсов нет — подключение временно останавливается.
-    </p>
+      <p>
+        Лимитированное количество доступных серверов.
+      </p>
 
-  </div>
+      <p style="margin-top:10px;">
+        Иногда свободных ресурсов нет — подключение временно останавливается.
+      </p>
 
-  <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-    Получить доступ
-  </button>
-
-</section>
-
-
-<div id="chatWidget">
-  <div id="chatBubble">💬</div>
-
-  <div id="chatBox">
-    <div id="chatHeader">
-      Поддержка
-      <span id="chatClose">✕</span>
     </div>
-    <div id="chatFormOverlay">
-    <div id="chatForm">
-      <div class="formTitle">Пожалуйста заполните поля для перехода в чат</div>
 
-        <input id="f_name" placeholder="Ваше имя" required>
-        <input id="f_email" placeholder="Email" required>
-        <input id="f_tg" placeholder="Telegram (не обязательно)">
+    <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
+      Получить доступ
+    </button>
 
-        <button id="chatFormBtn">Начать чат</button>
+  </section>
+
+
+  <div id="chatWidget">
+    <div id="chatBubble">💬</div>
+
+    <div id="chatBox">
+      <div id="chatHeader">
+        Поддержка
+        <span id="chatClose">✕</span>
+      </div>
+      <div id="chatFormOverlay">
+        <div id="chatForm">
+          <div class="formTitle">Пожалуйста заполните поля для перехода в чат</div>
+
+          <input id="f_name" placeholder="Ваше имя" required>
+          <input id="f_email" placeholder="Email" required>
+          <input id="f_tg" placeholder="Telegram (не обязательно)">
+
+          <button id="chatFormBtn">Начать чат</button>
+        </div>
+      </div>
+      <div id="chatMessages"></div>
+
+      <div id="chatInputWrap">
+        <input id="chatInput" placeholder="Напишите сообщение...">
+        <button id="chatSend">➤</button>
       </div>
     </div>
-    <div id="chatMessages"></div>
-
-    <div id="chatInputWrap">
-      <input id="chatInput" placeholder="Напишите сообщение...">
-      <button id="chatSend">➤</button>
-    </div>
   </div>
-</div>
 
-<script>
-const API = "https://proxy-uxtj.onrender.com/chat";
+  <script>
+    const API = "https://proxy-uxtj.onrender.com/chat";
 
-function getClientId(){
-  let id = localStorage.getItem("client_id");
-  if (!id) {
-    id = "c_" + crypto.randomUUID().slice(0,8);
-    localStorage.setItem("client_id", id);
-  }
-  return id;
-}
+    function getClientId() {
+      let id = localStorage.getItem("client_id");
+      if (!id) {
+        id = "c_" + crypto.randomUUID().slice(0, 8);
+        localStorage.setItem("client_id", id);
+      }
+      return id;
+    }
 
-const clientId = getClientId();
+    const clientId = getClientId();
 
-const bubble = document.getElementById("chatBubble");
-const box = document.getElementById("chatBox");
-const closeBtn = document.getElementById("chatClose");
-const sendBtn = document.getElementById("chatSend");
-const chat = document.getElementById("chatOpen");
+    const bubble = document.getElementById("chatBubble");
+    const box = document.getElementById("chatBox");
+    const closeBtn = document.getElementById("chatClose");
+    const sendBtn = document.getElementById("chatSend");
+    const chat = document.getElementById("chatOpen");
 
-const formOverlay = document.getElementById("chatFormOverlay");
-const formBtn = document.getElementById("chatFormBtn");
-const header = document.getElementById("chatHeader");
+    const formOverlay = document.getElementById("chatFormOverlay");
+    const formBtn = document.getElementById("chatFormBtn");
+    const header = document.getElementById("chatHeader");
 
-let operatorOnline = false;
+    let operatorOnline = false;
 
-function updateStatus(){
-  header.innerHTML = `
+    function updateStatus() {
+      header.innerHTML = `
     Поддержка 
     <span style="font-size:12px; opacity:0.8;">
       ${operatorOnline ? "🟢 онлайн" : "🔴 оффлайн"}
@@ -575,120 +586,120 @@ function updateStatus(){
     <span id="chatClose">✕</span>
   `;
 
-  document.getElementById("chatClose").onclick = () => {
-    box.style.display = "none";
-  };
-}
+      document.getElementById("chatClose").onclick = () => {
+        box.style.display = "none";
+      };
+    }
 
-function checkUser(){
-  return localStorage.getItem("user_saved") === "1";
-}
+    function checkUser() {
+      return localStorage.getItem("user_saved") === "1";
+    }
 
-function openChat(){
-  box.style.display = "flex";
+    function openChat() {
+      box.style.display = "flex";
 
-  if (!checkUser()) {
-    formOverlay.style.display = "flex";
-    setTimeout(() => {
-      document.getElementById("f_name").focus();
-    }, 100);
-  } else {
-    formOverlay.style.display = "none";
-  }
-}
+      if (!checkUser()) {
+        formOverlay.style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("f_name").focus();
+        }, 100);
+      } else {
+        formOverlay.style.display = "none";
+      }
+    }
 
-chat.onclick = openChat();
+    chat.addEventListener("click", () => openChat());
 
-bubble.onclick = openChat();
+    bubble.addEventListener("click", () => openChat());
 
-document.getElementById("chatInput").addEventListener("keydown", e=>{
-  if(e.key === "Enter") sendMsg();
-});
+    document.getElementById("chatInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") sendMsg();
+    });
 
-formBtn.onclick = () => {
+    formBtn.onclick = () => {
 
-  const name = document.getElementById("f_name").value.trim();
-  const email = document.getElementById("f_email").value.trim();
-  const tg = document.getElementById("f_tg").value.trim();
+      const name = document.getElementById("f_name").value.trim();
+      const email = document.getElementById("f_email").value.trim();
+      const tg = document.getElementById("f_tg").value.trim();
 
-  if (!name || !email) {
-    alert("Введите имя и email");
-    return;
-  }
+      if (!name || !email) {
+        alert("Введите имя и email");
+        return;
+      }
 
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
-  localStorage.setItem("tg", tg);
-  localStorage.setItem("user_saved", "1");
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("tg", tg);
+      localStorage.setItem("user_saved", "1");
 
-  formOverlay.style.display = "none";
+      formOverlay.style.display = "none";
 
-  loadChat();
-};
+      loadChat();
+    };
 
-sendBtn.onclick = sendMsg;
+    sendBtn.onclick = sendMsg;
 
-async function sendMsg(){
+    async function sendMsg() {
 
-  if (!checkUser()) {
-    formOverlay.style.display = "flex";
-    return;
-  }
+      if (!checkUser()) {
+        formOverlay.style.display = "flex";
+        return;
+      }
 
-  const input = document.getElementById("chatInput");
-  const text = input.value.trim();
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
 
-  if (!text) return;
+      if (!text) return;
 
-  const name = localStorage.getItem("name") || "";
-  const email = localStorage.getItem("email") || "";
-  const tg = localStorage.getItem("tg") || "";
+      const name = localStorage.getItem("name") || "";
+      const email = localStorage.getItem("email") || "";
+      const tg = localStorage.getItem("tg") || "";
 
-  await fetch(API + "/send", {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({
-      clientId,
-      text,
-      page: location.pathname,
-      name,
-      email,
-      tg
-    })
-  });
+      await fetch(API + "/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientId,
+          text,
+          page: location.pathname,
+          name,
+          email,
+          tg
+        })
+      });
 
-  input.value = "";
-  loadChat();
-}
+      input.value = "";
+      loadChat();
+    }
 
-async function loadChat(){
-  try {
-    const res = await fetch(API + "?client=" + clientId);
-    const data = await res.json();
+    async function loadChat() {
+      try {
+        const res = await fetch(API + "?client=" + clientId);
+        const data = await res.json();
 
-    const el = document.getElementById("chatMessages");
+        const el = document.getElementById("chatMessages");
 
-    if (!data.length) {
-      el.innerHTML = `
+        if (!data.length) {
+          el.innerHTML = `
         <div class="msg msg-support">
           👋 Здравствуйте! Напишите ваш вопрос — мы ответим в ближайшее время.
           <div style="font-size:10px; opacity:0.7; margin-top:4px;">оператор</div>
         </div>
       `;
-      return;
-    }
+          return;
+        }
 
-    const lastSupport = data.filter(m => m.from === "support").slice(-1)[0];
+        const lastSupport = data.filter(m => m.from === "support").slice(-1)[0];
 
-    if (lastSupport && Date.now() - lastSupport.time < 5 * 60 * 1000) {
-      operatorOnline = true;
-    } else {
-      operatorOnline = false;
-    }
+        if (lastSupport && Date.now() - lastSupport.time < 5 * 60 * 1000) {
+          operatorOnline = true;
+        } else {
+          operatorOnline = false;
+        }
 
-    updateStatus();
+        updateStatus();
 
-    el.innerHTML = data.map(m => `
+        el.innerHTML = data.map(m => `
       <div class="msg ${m.from === "client" ? "msg-client" : "msg-support"}">
         ${escapeHtml(m.text)}
         <div style="font-size:10px; opacity:0.7; margin-top:4px;">
@@ -697,24 +708,25 @@ async function loadChat(){
       </div>
     `).join("");
 
-    el.scrollTop = el.scrollHeight;
+        el.scrollTop = el.scrollHeight;
 
-  } catch (e) {
-    console.error("load error", e);
-  }
-}
+      } catch (e) {
+        console.error("load error", e);
+      }
+    }
 
-function escapeHtml(text){
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
 
-setInterval(loadChat, 3000);
+    setInterval(loadChat, 3000);
 
-updateStatus();
-loadChat();
-</script>
+    updateStatus();
+    loadChat();
+  </script>
 </body>
+
 </html>
