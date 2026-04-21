@@ -406,11 +406,11 @@
         Подключение за 24 часа. Без сложных настроек. Работает на всех устройствах
       </div>
 
-      <button class="btn" onclick="goTariffs()">
+      <button class="btn" onclick="goTariffs()" margin="10px">
         Подключиться сейчас
       </button>
 
-      <button id="btnHowItWork" class="btn">
+      <button id="btnHowItWork" class="btn" margin="10px">
         Или узнать как это работает
       </button>
 
@@ -580,7 +580,7 @@
     const formBtn = document.getElementById("chatFormBtn");
     const header = document.getElementById("chatHeader");
 
-    document.getElementById("bntHowItWork").addEventListener("click", () => {
+    document.getElementById("btnHowItWork").addEventListener("click", () => {
       document.getElementById("howItWork").scrollIntoView({
         behavior: "smooth"
       });
