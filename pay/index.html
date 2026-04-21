@@ -632,6 +632,9 @@ bubble.onclick = () => {
     }, 100);
   } else {
     formOverlay.style.display = "none";
+
+    const el = document.getElementById("chatMessages");
+    el.scrollTop = el.scrollHeight;
   }
 };
 
@@ -692,7 +695,10 @@ async function sendMsg(){
   });
 
   input.value = "";
-  loadChat();
+  await loadChat();
+    
+    const el = document.getElementById("chatMessages");
+    el.scrollTop = el.scrollHeight;
 }
 
 async function loadChat(){
@@ -731,7 +737,7 @@ async function loadChat(){
       </div>
     `).join("");
 
-    el.scrollTop = el.scrollHeight;
+  //  el.scrollTop = el.scrollHeight;
 
   } catch (e) {
     console.error("load error", e);
