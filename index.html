@@ -182,6 +182,7 @@
       cursor: pointer;
       z-index: 9999;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
     }
 
     #chatBubble:active {
@@ -189,15 +190,15 @@
     }
 
     #chatBubble:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     #chatSend:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     #chatClose:hover {
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
 
     #chatOpen {
@@ -210,7 +211,7 @@
     }
 
     #chatOpen:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
     }
 
     #chatBox {
@@ -237,6 +238,7 @@
 
     #chatClose {
       cursor: pointer;
+      transition: transform 0.3s;
     }
 
     #chatClose:active {
@@ -287,6 +289,7 @@
       background: linear-gradient(90deg, #004084, #3483ff);
       color: white;
       cursor: pointer;
+      transition: transform 0.3s;
     }
 
     #chatSend:active {
@@ -414,10 +417,6 @@
         <div>✔ Запуск под ключ за 24 часа</div>
       </div>
 
-      <button class="btn" onclick="goTariffs()" style="margin-top:15px;">
-        Получить доступ
-      </button>
-
       <div class="price">
         от 2499 ₽
         <span>Первый месяц сервера включен, далее ~250 ₽/мес напрямую провайдеру</span>
@@ -455,7 +454,7 @@
     <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.6;">
 
       <div style="margin:20px 0;">
-        <b>1.</b> Нажимаете «Подключиться» и выбираете сервер и необходимые опции
+        <b>1.</b> Выбираете сервер и необходимые опции
       </div>
 
       <div style="margin:20px 0;">
@@ -469,7 +468,7 @@
     </div>
 
     <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-      Подключиться сейчас
+      Перейти к выбору сервера
     </button>
 
   </section>
@@ -518,7 +517,7 @@
     </div>
 
     <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-      Получить доступ
+      Получить свой сервер сейчас
     </button>
 
   </section>
