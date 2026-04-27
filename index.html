@@ -42,13 +42,14 @@
     }
 
     .left {
-      max-width: 560px;
+      max-width: 520px;
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 42px;
       line-height: 1.2;
       margin-bottom: 15px;
+      max-width: 500px;
       font-weight: 800;
 
       background: linear-gradient(180deg, #ffffff, #cbd5f5);
@@ -358,7 +359,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* ===== HEADER ===== */
     .header {
       position: fixed;
       top: 0;
@@ -372,6 +372,27 @@
       z-index: 999;
     }
 
+    .header a,
+    .header div {
+
+      transition: 0.25s;
+
+    }
+
+    .header a:hover {
+
+      background: rgba(255, 255, 255, 0.15) !important;
+
+      transform: translateY(-1px);
+
+    }
+
+    .header div:hover {
+
+      transform: scale(1.05);
+
+    }
+
     .nav a {
       margin-left: 20px;
       color: #cbd5e1;
@@ -383,24 +404,54 @@
       color: white;
     }
 
-    /* ===== PACKS ===== */
     .packs {
+
       display: flex;
-      gap: 14px;
+
+      gap: 16px;
+
       margin-top: 25px;
+
     }
 
     .pack {
+
       flex: 1;
-      padding: 16px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
-      font-size: 14px;
+
+      padding: 20px;
+
+      border-radius: 16px;
+
+      background: rgba(255, 255, 255, 0.05);
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      cursor: pointer;
+
+      transition: 0.25s;
+
+    }
+
+    .pack:hover {
+
+      background: rgba(255, 255, 255, 0.1);
+
+      transform: translateY(-2px);
+
     }
 
     .pack.active {
+
       border: 1px solid #3b82f6;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), transparent);
+
+      background: rgba(59, 130, 246, 0.15);
+
+    }
+
+    .pack b {
+
+      font-size: 16px;
+
     }
 
     @media (max-width: 870px) {
@@ -432,9 +483,12 @@
 
   <div class="header">
 
-    <div style="display:flex; align-items:center; gap:10px;">
-      <img src="/shield.webp" style="width:26px;">
-      <b>TrueNET</b>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img src="/shield.webp" style="width:38px; height:38px;">
+      <div class="brand-name" style="font-size:22px;">
+        <span class="true">True</span><span class="net">NET</span>
+      </div>
+
     </div>
 
     <div class="nav">
@@ -449,9 +503,22 @@
         Telegram
       </a>
 
-      <div onclick="openChat()"
-        style="padding:8px 14px; border-radius:10px; background:linear-gradient(90deg,#2563eb,#3b82f6); cursor:pointer;">
+      <div onclick="openChat()" style="
+
+        padding:8px 16px;
+
+        border-radius:10px;
+
+        background: linear-gradient(90deg,#2563eb,#3b82f6);
+
+        cursor:pointer;
+
+        transition:0.25s;
+
+      ">
+
         Поддержка
+
       </div>
 
     </div>
@@ -463,11 +530,7 @@
     <div class="left">
 
       <h1>
-
-        Стабильный доступ к интернету<br>
-
-        без ограничений и перебоев
-
+        Стабильный интернет без ограничений
       </h1>
 
       <div class="subtitle">
@@ -519,12 +582,6 @@
     <div class="right">
 
       <img src="/shield.webp" loading="lazy">
-
-      <div class="brand-name">
-
-        <span class="true">True</span><span class="net">NET</span>
-
-      </div>
 
     </div>
 
