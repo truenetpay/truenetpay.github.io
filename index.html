@@ -27,7 +27,7 @@
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       color: white;
       overflow-x: hidden;
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("/bg.webp") center / cover no-repeat;
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("/bg.webp") center / cover no-repeat;
     }
 
     .hero {
@@ -357,6 +357,57 @@
     .email {
       letter-spacing: 0.1em;
     }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+    }
+
+    .nav a {
+      margin-left: 20px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
+      color: white;
+    }
+
+    /* ===== PACKS ===== */
+    .packs {
+      display: flex;
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .pack {
+      flex: 1;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 14px;
+    }
+
+    .pack.active {
+      border: 1px solid #3b82f6;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), transparent);
+    }
+
+    @media (max-width: 870px) {
+      .packs {
+        flex-direction: column;
+      }
+    }
   </style>
 
   <script>
@@ -379,77 +430,131 @@
 
 <body>
 
+  <div class="header">
+
+    <div style="display:flex; align-items:center; gap:10px;">
+      <img src="/shield.webp" style="width:26px;">
+      <b>TrueNET</b>
+    </div>
+
+    <div class="nav">
+      <a href="#packs">Доступ</a>
+      <a href="#howItWork">Как это работает</a>
+    </div>
+
+    <div style="display:flex; gap:10px;">
+
+      <a href="https://t.me/truenet_support" target="_blank"
+        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.08); color:white; text-decoration:none;">
+        Telegram
+      </a>
+
+      <div onclick="openChat()"
+        style="padding:8px 14px; border-radius:10px; background:linear-gradient(90deg,#2563eb,#3b82f6); cursor:pointer;">
+        Поддержка
+      </div>
+
+    </div>
+
+  </div>
+
   <div class="hero">
 
     <div class="left">
 
       <h1>
-        Работает всегда.<br>
-        Без перебоев и ограничений
+
+        Стабильный доступ к интернету<br>
+
+        без ограничений и перебоев
+
       </h1>
 
       <div class="subtitle">
-        Персональный сервер для стабильного доступа к сервисам.<br>
-        Полная приватность и высокая скорость без ограничений
+
+        Подключение за 24 часа. Работает на всех устройствах.
+
+        Полный контроль и высокая скорость
+
       </div>
 
-      <script>
-        function goTariffs() {
-          ym(108510887, 'reachGoal', 'go_to_tariffs');
+      <div class="packs" id="packs">
 
-          setTimeout(() => {
-            window.location.href = '/tariffs/';
-          }, 100);
-        }
-      </script>
+        <div class="pack">
 
-      <div class="subtitle" style="margin-top:15px; font-size:14px;">
-        Подключение за 24 часа. Без сложных настроек. Работает на всех устройствах
+          <b>Базовый доступ</b><br><br>
+
+          Для ПК и умеренного использования<br>
+
+          <span style="opacity:0.7">подходит при лимите мобильного трафика</span>
+
+        </div>
+
+        <div class="pack active">
+
+          <b>Расширенный доступ</b><br><br>
+
+          Для активного использования на всех устройствах<br>
+
+          <span style="opacity:0.7">стабильная работа без ограничений</span>
+
+        </div>
+
       </div>
 
-      <button class="btn" onclick="goTariffs()" style="margin: 10px;">
+      <button class="btn" onclick="goTariffs()" style="margin-top:25px;">
+
         Подключиться сейчас
+
       </button>
 
-      <button id="btnHowItWork" class="btn" style="margin: 10px;">
-        Или узнать подробнее
-      </button>
+      <div style="margin-top:12px; font-size:13px; color:#9ca3af;">
 
-      <div class="trust">
-        <div>✔ Стабильная работа без перебоев</div>
-        <div>✔ Без ограничений скорости и трафика</div>
-        <div>✔ Только ваш сервер — полный контроль</div>
-        <div>✔ До 20 устройств (семья / команда)</div>
-        <div>✔ Запуск под ключ за 24 часа</div>
-      </div>
+        ✔ Настройка под ключ • ✔ Поддержка • ✔ Работает сразу
 
-      <div class="price">
-        от 2499 ₽
-        <span>Первый месяц аренды сервера включен,<br>далее ~250 ₽/мес напрямую провайдеру</span>
-      </div>
-
-      <div class="telegram">
-        Остались вопросы? Напишите нам в <span id="chatOpen">Чат</span><br>
-        Или в Telegram: <a class="link" href="https://t.me/truenet_support" target="_blank">@truenet_support</a><br>
-        Email: <span class="email">truenetcomp@gmail.com</span>
       </div>
 
     </div>
+
     <div class="right">
+
       <img src="/shield.webp" loading="lazy">
+
       <div class="brand-name">
+
         <span class="true">True</span><span class="net">NET</span>
+
       </div>
+
     </div>
-    <div class="features">
-      <b>Наши преимущества:</b><br><br>
-      <span style="display: inline-block; margin: 5px">✔ Уже используют частные пользователи и команды</span><br>
-      <span style="display: inline-block; margin: 5px">✔ Поддержка после подключения</span><br>
-      <span style="display: inline-block; margin: 5px">✔ Официальная оплата (чек)</span><br>
-      <span style="display: inline-block; margin: 5px">✔ Настройка без вашего участия</span><br>
-      <span style="display: inline-block; margin: 5px">✔ Полный контроль над доступом</span>
-    </div>
+
   </div>
+
+  <section style="padding:60px 20px; text-align:center;">
+
+    <h2 style="font-size:26px; margin-bottom:25px;">
+
+      Почему выбирают TrueNET
+
+    </h2>
+
+    <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.8;">
+
+      <div>✔ Стабильная работа без перебоев</div>
+
+      <div>✔ Без ограничений скорости</div>
+
+      <div>✔ Только ваш доступ — без перегрузок</div>
+
+      <div>✔ До 20 устройств</div>
+
+      <div>✔ Настройка и запуск за 24 часа</div>
+
+      <div>✔ Поддержка после подключения</div>
+
+    </div>
+
+  </section>
 
   <section id="howItWork" style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
 
@@ -684,7 +789,7 @@
 
       input.value = "";
       await loadChat();
-   
+
       const el = document.getElementById("chatMessages");
       el.scrollTop = el.scrollHeight;
     }
@@ -725,7 +830,7 @@
       </div>
     `).join("");
 
-      // el.scrollTop = el.scrollHeight;
+        // el.scrollTop = el.scrollHeight;
 
       } catch (e) {
         console.error("load error", e);
@@ -744,6 +849,45 @@
     updateStatus();
     loadChat();
   </script>
+
+  <div style="
+  padding:50px 20px;
+  text-align:center;
+  background: rgba(0,0,0,0.7);
+  margin-top:60px;
+">
+
+    <div style="font-size:18px; font-weight:600; margin-bottom:10px;">
+      TrueNET
+    </div>
+
+    <div style="font-size:14px; color:#cbd5e1; max-width:500px; margin:0 auto;">
+      Стабильный и защищённый доступ к интернет-сервисам без ограничений скорости и качества соединения
+    </div>
+
+    <div style="margin-top:25px; font-size:14px;">
+      <a href="https://t.me/truenet_support" target="_blank"
+        style="color:#93c5fd; text-decoration:none; margin:0 10px;">
+        Telegram
+      </a>
+
+      <span style="opacity:0.5;">•</span>
+
+      <span style="color:#cbd5e1; margin:0 10px;">
+        truenetcomp@gmail.com
+      </span>
+    </div>
+
+    <div style="margin-top:20px; font-size:12px; color:#6b7280; max-width:600px; margin-left:auto; margin-right:auto;">
+      Сервис предоставляет услуги по настройке и сопровождению серверных решений. Пользователь самостоятельно управляет
+      доступом и использованием сервиса.
+    </div>
+
+    <div style="margin-top:15px; font-size:12px; color:#4b5563;">
+      © 2026 TrueNET. Все права защищены
+    </div>
+
+  </div>
 </body>
 
 </html>
