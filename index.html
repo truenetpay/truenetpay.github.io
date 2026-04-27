@@ -68,6 +68,11 @@
       transition: 0.25s;
     }
 
+    .pack:hover {
+      transform: translateY(-4px);
+      border: 1px solid #3b82f6;
+    }
+
     .pack.active {
       border: 1px solid #3b82f6;
       background: rgba(59, 130, 246, 0.15);
@@ -371,14 +376,13 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 22px;
+      font-size: 24px;
+      font-weight: 700;
     }
 
     .logo img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      /* фикс приплюснутости */
+      width: 42px;
+      height: 42px;
     }
 
     .net {
@@ -422,6 +426,22 @@
       cursor: pointer;
     }
 
+    .tg-btn:hover {
+
+      background: rgba(255, 255, 255, 0.2);
+
+      transform: translateY(-1px);
+
+    }
+
+    .support-btn:hover {
+
+      transform: translateY(-1px);
+
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+
+    }
+
     .burger {
       display: none;
       font-size: 22px;
@@ -430,14 +450,43 @@
 
     /* MOBILE */
     .mobile-menu {
+
       display: none;
+
       position: fixed;
+
       top: 64px;
+
       width: 100%;
-      background: #0b0f19;
+
+      background: rgba(11, 15, 25, 0.98);
+
+      backdrop-filter: blur(20px);
+
       padding: 20px;
+
       flex-direction: column;
+
       gap: 15px;
+
+      animation: fadeIn 0.2s ease;
+
+    }
+
+
+
+    @keyframes fadeIn {
+
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
     }
 
     .mobile-menu a {
@@ -450,11 +499,14 @@
         display: none;
       }
 
+      .tg-btn {
+        display: none;
+      }
+
       .burger {
         display: block;
       }
     }
-
   </style>
 
   <script>
@@ -696,6 +748,15 @@
   </div>
 
   <script>
+    document.querySelectorAll(".pack").forEach(pack => {
+      pack.addEventListener("click", () => {
+        document.querySelectorAll(".pack").forEach(p => p.classList.remove("active"));
+        pack.classList.add("active");
+      });
+    });
+  </script>
+
+  <script>
     function toggleMenu() {
       const menu = document.getElementById("mobileMenu");
       menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -730,17 +791,10 @@
     const box = document.getElementById("chatBox");
     const closeBtn = document.getElementById("chatClose");
     const sendBtn = document.getElementById("chatSend");
-    const chat = document.getElementById("chatOpen");
 
     const formOverlay = document.getElementById("chatFormOverlay");
     const formBtn = document.getElementById("chatFormBtn");
     const header = document.getElementById("chatHeader");
-
-    document.getElementById("btnHowItWork").addEventListener("click", () => {
-      document.getElementById("howItWork").scrollIntoView({
-        behavior: "smooth"
-      });
-    });
 
     let operatorOnline = false;
 
@@ -776,8 +830,6 @@
         el.scrollTop = el.scrollHeight;
       }
     }
-
-    chat.addEventListener("click", () => openChat());
 
     bubble.addEventListener("click", () => openChat());
 
