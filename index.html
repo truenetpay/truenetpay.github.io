@@ -32,15 +32,25 @@
 
     .hero {
       min-height: 100svh;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
-      padding: 100px 20px 40px;
+
+      padding: 80px 20px 20px;
     }
 
     .hero-content {
       max-width: 900px;
       text-align: center;
+    }
+
+    section {
+
+      margin-top: 0;
+
     }
 
     h1 {
@@ -156,16 +166,22 @@
       text-decoration: none;
     }
 
-
     .true {
+
       color: #e5e7eb;
+
     }
 
     .net {
-      background: linear-gradient(90deg, #1ddeff, #ffffff);
+
+      background: linear-gradient(90deg, #00d4ff, #3b82f6);
+
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+
+      letter-spacing: 0.12em;
+
     }
 
 
@@ -214,6 +230,15 @@
 
     #chatOpen:hover {
       transform: scale(1.07);
+    }
+
+    #chatOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      z-index: 9998;
     }
 
     #chatBox {
@@ -269,6 +294,14 @@
 
     .msg-support {
       background: #455872;
+    }
+
+    .input-error {
+      border: 1px solid #ef4444 !important;
+    }
+
+    .input-error::placeholder {
+      color: #ef4444;
     }
 
     #chatInputWrap {
@@ -373,20 +406,33 @@
     }
 
     .logo {
+
       display: flex;
+
       align-items: center;
-      gap: 10px;
-      font-size: 24px;
-      font-weight: 700;
+
+      gap: 12px;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.08em;
+
     }
 
     .logo img {
-      width: 42px;
-      height: 42px;
+
+      width: 44px;
+
+      height: 44px;
+
     }
 
-    .net {
-      color: #60a5fa;
+    .logo:hover {
+
+      transform: scale(1.02);
+
     }
 
     .nav {
@@ -722,6 +768,7 @@
   <div id="chatWidget">
     <div id="chatBubble">💬</div>
 
+    <div id="chatOverlay"></div>
     <div id="chatBox">
       <div id="chatHeader">
         Поддержка
@@ -798,18 +845,26 @@
 
     let operatorOnline = false;
 
+    function closeChat() {
+
+      box.style.display = "none";
+
+      document.getElementById("chatOverlay").style.display = "none";
+
+    }
+
     function updateStatus() {
       header.innerHTML = `
-    Поддержка 
-    <span style="font-size:12px; opacity:0.8;">
-      ${operatorOnline ? "🟢 онлайн" : "🔴 оффлайн"}
-    </span>
+    <div>
+      Поддержка 
+      <span style="font-size:12px; opacity:0.8;">
+        ${operatorOnline ? "🟢 онлайн" : "🔴 оффлайн"}
+      </span>
+    </div>
     <span id="chatClose">✕</span>
   `;
 
-      document.getElementById("chatClose").onclick = () => {
-        box.style.display = "none";
-      };
+      document.getElementById("chatClose").onclick = closeChat;
     }
 
     function checkUser() {
@@ -818,6 +873,7 @@
 
     function openChat() {
       box.style.display = "flex";
+      document.getElementById("chatOverlay").style.display = "block";
 
       if (!checkUser()) {
         formOverlay.style.display = "flex";
@@ -826,8 +882,6 @@
         }, 100);
       } else {
         formOverlay.style.display = "none";
-        const el = document.getElementById("chatMessages");
-        el.scrollTop = el.scrollHeight;
       }
     }
 
@@ -837,16 +891,36 @@
       if (e.key === "Enter") sendMsg();
     });
 
-    formBtn.onclick = () => {
+    document.getElementById("chatOverlay").onclick = () => {
+      box.style.display = "none";
+      document.getElementById("chatOverlay").style.display = "none";
+    };
 
-      const name = document.getElementById("f_name").value.trim();
-      const email = document.getElementById("f_email").value.trim();
+    formBtn.onclick = () => {
+      const nameInput = document.getElementById("f_name");
+      const emailInput = document.getElementById("f_email");
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
       const tg = document.getElementById("f_tg").value.trim();
 
-      if (!name || !email) {
-        alert("Введите имя и email");
-        return;
+      let valid = true;
+
+      [nameInput, emailInput].forEach(i => i.classList.remove("input-error"));
+
+      if (!name) {
+        nameInput.classList.add("input-error");
+        nameInput.placeholder = "Введите имя";
+        valid = false;
       }
+
+      if (!email) {
+        emailInput.classList.add("input-error");
+        emailInput.placeholder = "Введите email";
+        valid = false;
+      }
+
+      if (!valid) return;
 
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
@@ -854,7 +928,6 @@
       localStorage.setItem("user_saved", "1");
 
       formOverlay.style.display = "none";
-
       loadChat();
     };
 
