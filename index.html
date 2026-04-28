@@ -76,23 +76,23 @@
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: 0.25s;
-      cursor: default;
+      cursor: pointer;
+
+      transition: all 0.25s ease;
 
     }
+
 
     .pack:hover {
+
       transform: translateY(-4px);
-      border: 1px solid #3b82f6;
-    }
 
-    .pack.active {
-      border: 1px solid #3b82f6;
-      background: rgba(59, 130, 246, 0.15);
-    }
+      border: 1px solid rgba(255, 255, 255, 0.2);
 
-    .pack.active .pack-title {
-      color: #60a5fa;
+      background: rgba(255, 255, 255, 0.08);
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
     }
 
     .pack p {
@@ -148,18 +148,41 @@
     }
 
     .btn {
-      padding: 14px 28px;
+
+      padding: 14px 32px;
+
       font-size: 18px;
+
       border-radius: 12px;
+
       border: none;
+
       cursor: pointer;
-      background: linear-gradient(90deg, #2563eb, #3b82f6);
-      color: white;
-      transition: 0.2s;
+
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+
+      color: #e5e7eb;
+
+      box-shadow:
+
+        0 8px 25px rgba(0, 0, 0, 0.6),
+
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+      transition: all 0.25s ease;
+
     }
 
     .btn:hover {
-      transform: scale(1.05);
+
+      transform: translateY(-2px);
+
+      box-shadow:
+
+        0 12px 35px rgba(0, 0, 0, 0.8),
+
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
     }
 
     .features {
@@ -489,10 +512,21 @@
     }
 
     .support-btn {
-      padding: 6px 14px;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #2563eb, #3b82f6);
-      cursor: pointer;
+
+      background: linear-gradient(135deg, #1e293b, #334155);
+
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+    }
+
+    .support-btn:hover {
+
+      box-shadow:
+
+        0 5px 20px rgba(0, 0, 0, 0.6),
+
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
     }
 
     .tg-btn:hover {
@@ -500,14 +534,6 @@
       background: rgba(255, 255, 255, 0.2);
 
       transform: translateY(-1px);
-
-    }
-
-    .support-btn:hover {
-
-      transform: translateY(-1px);
-
-      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 
     }
 
@@ -645,7 +671,7 @@
 
   <div id="mobileMenu" class="mobile-menu">
 
-    <a onclick="goTariffs()">Тарифы</a>
+    <a onclick="goTariffs()" style="cursor:pointer;">Тарифы</a>
 
     <a href="#howItWork">Как это работает</a>
 
@@ -686,7 +712,7 @@
 
         </div>
 
-        <div class="pack active">
+        <div class="pack">
 
           <div class="pack-title">Расширенный доступ</div>
 
@@ -733,7 +759,7 @@
 
       <div>✔ Стабильная работа без перебоев (доступность серверов 99,98%)</div>
 
-      <div>✔ Только ваш доступ — без ограничений скорости</div>
+      <div>✔ Нет лимита времени сессий и ограничений скорости</div>
 
       <div>✔ Настройка и запуск за 24 часа</div>
 
@@ -821,15 +847,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    document.querySelectorAll(".pack").forEach(pack => {
-      pack.addEventListener("click", () => {
-        document.querySelectorAll(".pack").forEach(p => p.classList.remove("active"));
-        pack.classList.add("active");
-      });
-    });
-  </script>
 
   <script>
     function toggleMenu() {
