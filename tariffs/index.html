@@ -174,6 +174,8 @@
 
     .btn {
 
+      position: relative;
+
       width: 100%;
 
       margin-top: 30px;
@@ -184,13 +186,15 @@
 
       border-radius: 14px;
 
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid transparent;
 
       cursor: pointer;
 
       background:
 
-        linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+        linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9)) padding-box,
+
+        linear-gradient(135deg, #38bdf8, #2563eb) border-box;
 
       color: #fff;
 
@@ -200,49 +204,55 @@
 
       box-shadow:
 
-        0 10px 30px rgba(37, 99, 235, 0.35),
+        0 0 20px rgba(56, 189, 248, 0.25),
 
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 0 40px rgba(37, 99, 235, 0.2);
 
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
 
       font-family: inherit;
-      position: relative;
-
-      overflow: hidden;
     }
 
     .btn:hover {
+
       transform: translateY(-2px);
 
-      background:
-        linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
-
       box-shadow:
-        0 15px 40px rgba(37, 99, 235, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+        0 0 25px rgba(56, 189, 248, 0.45),
+
+        0 0 60px rgba(37, 99, 235, 0.35);
+
     }
 
     .btn:active {
+
       transform: translateY(1px);
 
       box-shadow:
-        0 5px 15px rgba(37, 99, 235, 0.35),
-        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+
+        0 0 10px rgba(56, 189, 248, 0.3);
+
     }
 
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 14px;
-      pointer-events: none;
+    .btn::before {
 
-      background: radial-gradient(circle at 50% 0%,
-          rgba(255, 255, 255, 0.25),
-          transparent 60%);
+      content: "";
+
+      position: absolute;
+
+      inset: -1px;
+
+      border-radius: 14px;
+
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+
+      filter: blur(6px);
 
       opacity: 0.6;
+
+      z-index: -1;
+
     }
 
     .footer {
