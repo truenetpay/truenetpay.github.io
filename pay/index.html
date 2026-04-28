@@ -1,611 +1,682 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrueNET — Оплата</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueNET — Оплата</title>
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="/bg.webp">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/bg.webp">
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: url("/bg.webp") no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: url("/bg.webp") no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
 
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-}
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
 
-.container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 380px;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(25px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-    text-align: center;
-}
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 380px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
 
-.logo-img {
-    width: 120px;
-    margin-bottom: 10px;
-}
+    .logo-img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
 
-.logo {
-    font-size: 26px;
-    font-weight: bold;
-}
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
 
-.logo .true {
-  color: #e5e7eb;
-}
+    .logo .true {
+      color: #e5e7eb;
+    }
 
-.logo .net {
-  background: linear-gradient(90deg, #1ddeff, #ffffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    .logo .net {
+      background: linear-gradient(90deg, #1ddeff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 0 12px rgba(59,130,246,0.6);
-}
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    }
 
-.subtitle {
-    font-size: 14px;
-    color: #cbd5f5;
-    margin: 10px 0 15px;
-}
+    .subtitle {
+      font-size: 14px;
+      color: #cbd5f5;
+      margin: 10px 0 15px;
+    }
 
-.features {
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #dbeafe;
-}
+    .features {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #dbeafe;
+    }
 
-.price {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-.status {
-    font-size: 14px;
-    margin-bottom: 10px;
-    opacity: 0.9;
-}
+    .status {
+      font-size: 14px;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
 
-.timer {
-    font-size: 13px;
-    margin-bottom: 15px;
-    color: #93c5fd;
-}
+    .timer {
+      font-size: 13px;
+      margin-bottom: 15px;
+      color: #93c5fd;
+    }
 
-.inpt {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    margin-top: 10px;
-    background: rgba(255,255,255,0.1);
-    color: white;
-}
+    .inpt {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
 
-.btnActive {
-    width: 100%;
-    margin-top: 15px;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
+    .btnActive {
+      position: relative;
+      width: 100%;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding: 16px;
 
-.btnActive:hover {
-    transform: scale(1.02);
-}
+      border-radius: 14px;
+      border: 1px solid transparent;
 
-button.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
+      cursor: pointer;
 
-.footer {
-    margin-top: 15px;
-    font-size: 12px;
-    color: #9ca3af;
-}
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9)) padding-box,
+        linear-gradient(135deg, #38bdf8, #2563eb) border-box;
 
-.order-box {
-    font-size: 12px;
-    color: #9ca3af;
-    margin-bottom: 10px;
-    opacity: 0.8;
-    cursor: pointer;
-    transition: 0.2s;
-}
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
 
-.order-box:hover {
-    opacity: 1;
-    color: #cbd5f5;
-}
+      box-shadow:
+        0 0 20px rgba(56, 189, 248, 0.25),
+        0 0 40px rgba(37, 99, 235, 0.2);
 
-#chatBubble {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 58px;
-  height: 58px;
-  background: linear-gradient(90deg, #004084, #3483ff);
-  border-radius: 50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  cursor:pointer;
-  z-index:9999;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-}
+      transition: all 0.25s ease;
+    }
 
-#chatBubble:active {
-  transform: translateY(3px);
-}
+    .btnActive:hover {
+      transform: translateY(-2px);
 
-#chatBubble:hover {
-    transform: scale(1.02);
-}
+      box-shadow:
+        0 0 25px rgba(56, 189, 248, 0.45),
+        0 0 60px rgba(37, 99, 235, 0.35);
+    }
 
-#chatSend:hover {
-    transform: scale(1.02);
-}
+    .btnActive:active {
+      transform: translateY(1px);
 
-#chatClose:hover {
-    transform: scale(1.02);
-}
+      box-shadow:
+        0 0 10px rgba(56, 189, 248, 0.3);
+    }
 
-#chatBox {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 340px;
-  height: 460px;
-  background: #0b0f19;
-  border-radius: 18px;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index:9999;
-}
+    .btnActive::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 14px;
 
-#chatHeader {
-  padding: 14px;
-  background: linear-gradient(90deg, #004084, #2a4d84);
-  font-weight: 600;
-  display:flex;
-  justify-content:space-between;
-}
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
 
-#chatClose {
-  cursor:pointer;
-}
+      filter: blur(6px);
+      opacity: 0.6;
 
-#chatClose:active {
-  transform: translateY(3px);
-}
+      z-index: -1;
+    }
 
-#chatMessages {
-  flex:1;
-  padding:12px;
-  overflow-y:auto;
-  font-size:14px;
-  background: #ffffff;
-}
+    button.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-.msg {
-  margin:6px 0;
-  max-width:75%;
-  padding:8px 10px;
-  border-radius:10px;
-}
+    .footer {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
 
-.msg-client {
-  background:#00419c;
-  margin-left:auto;
-}
+    .order-box {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+      opacity: 0.8;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.msg-support {
-  background:#455872;
-}
+    .order-box:hover {
+      opacity: 1;
+      color: #cbd5f5;
+    }
 
-#chatInputWrap {
-  display:flex;
-  border-top:1px solid rgba(255,255,255,0.05);
-}
+    #chatBubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(90deg, #004084, #3483ff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
 
-#chatInput {
-  flex:1;
-  padding:12px;
-  border:none;
-  outline:none;
-  background: #e1e1e1;
-  color: black;
-}
+    #chatBubble:active {
+      transform: translateY(3px);
+    }
 
-#chatSend {
-  width:60px;
-  border:none;
-  background: linear-gradient(90deg, #004084, #3483ff);
-  color:white;
-  cursor:pointer;
-}
+    #chatBubble:hover {
+      transform: scale(1.02);
+    }
 
-#chatSend:active {
-  transform: translateY(3px);
-}
+    #chatSend:hover {
+      transform: scale(1.02);
+    }
 
-#chatFormOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
+    #chatClose:hover {
+      transform: scale(1.02);
+    }
 
-#chatForm {
-  width: 85%;
-  background: #111827;
-  padding: 20px;
-  border-radius: 14px;
-  text-align: center;
-}
+    #chatBox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 340px;
+      height: 460px;
+      background: #0b0f19;
+      border-radius: 18px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+    }
 
-.formTitle {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
+    #chatHeader {
+      padding: 14px;
+      background: linear-gradient(90deg, #004084, #2a4d84);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
 
-#chatForm input {
-  width: 100%;
-  margin: 6px 0;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #1f2937;
-  color: white;
-}
+    #chatClose {
+      cursor: pointer;
+    }
 
-#chatForm button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-}
+    #chatClose:active {
+      transform: translateY(3px);
+    }
 
-#chatFormBtn:hover {
-    transform: scale(1.02);
-}
+    #chatMessages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      font-size: 14px;
+      background: #ffffff;
+    }
 
-#chatFormBtn:active {
-  transform: translateY(3px);
-}
+    .msg {
+      margin: 6px 0;
+      max-width: 75%;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
 
-</style>
+    .msg-client {
+      background: #00419c;
+      margin-left: auto;
+    }
 
-<script>
-(function(m,e,t,r,i,k,a){
-    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-    k.async=1;k.src=r;a.parentNode.insertBefore(k,a)
-})
-(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    .msg-support {
+      background: #455872;
+    }
 
-ym(108510887, "init", {
-  clickmap:true,
-  trackLinks:true,
-  accurateTrackBounce:true,
-  webvisor:true
-});
-</script>
+    #chatInputWrap {
+      display: flex;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    #chatInput {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      outline: none;
+      background: #e1e1e1;
+      color: black;
+    }
+
+    #chatSend {
+      width: 60px;
+      border: none;
+      background: linear-gradient(90deg, #004084, #3483ff);
+      color: white;
+      cursor: pointer;
+    }
+
+    #chatSend:active {
+      transform: translateY(3px);
+    }
+
+    #chatFormOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    #chatForm {
+      width: 85%;
+      background: #111827;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .formTitle {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    #chatForm input {
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #1f2937;
+      color: white;
+    }
+
+    #chatForm button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    #chatFormBtn:hover {
+      transform: scale(1.02);
+    }
+
+    #chatFormBtn:active {
+      transform: translateY(3px);
+    }
+
+    .note-mark {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 14px;
+
+      height: 14px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      border-radius: 50%;
+
+      background: rgba(59, 130, 246, 0.2);
+
+      color: #60a5fa;
+
+      margin-left: 5px;
+
+      cursor: default;
+
+    }
+  </style>
+
+  <script>
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0];
+      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a)
+    })
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(108510887, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  </script>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-<img src="/shield.webp" class="logo-img">
-<div class="logo"><span class="true">True</span><span class="net">NET</span></div>
+    <img src="/shield.webp" class="logo-img">
+    <div class="logo"><span class="true">True</span><span class="net">NET</span></div>
 
-<div class="subtitle">
-Персональный сервер с VPN для безопасного и стабильного интернет-подключения
-</div>
-
-<div class="features">
-✔ Стабильное и защищённое интернет-подключение<br>
-✔ Быстрый запуск без сложной настройки<br>
-✔ Ваши данные и трафик под вашим контролем
-</div>
-
-<div class="subtitle" style="font-size:13px;">
-(Вы самостоятельно управляете сервером и параметрами подключения)
-</div>
-
-<div id="price" class="price">Загрузка...</div>
-<div id="orderBox" class="order-box" style="display:none;">
-  <span id="orderLabel">🧾 Заказ: </span>
-  <span id="orderId"></span>
-</div>
-<div id="status" class="status"></div>
-<div id="timer" class="timer"></div>
-
-<form id="form">
-<input class="inpt" type="text" name="name" placeholder="Ваше имя" required>
-<input class="inpt" type="email" name="email" placeholder="Ваш email" required>
-<input class="inpt" type="text" name="tg" placeholder="Telegram (не обязательно)">
-<button class="btnActive" id="btn">Перейти к оплате</button>
-</form>
-
-<div class="footer">
-После оплаты на указанную почту будет отправлен чек
-</div>
-
-</div>
-
-<div id="chatWidget">
-  <div id="chatBubble">💬</div>
-
-  <div id="chatBox">
-    <div id="chatHeader">
-      Поддержка
-      <span id="chatClose">✕</span>
+    <div class="subtitle">
+      Персональный сервер с VPN для безопасного и стабильного интернет-подключения
     </div>
-    <div id="chatFormOverlay">
-    <div id="chatForm">
-      <div class="formTitle">Пожалуйста заполните поля для перехода в чат</div>
 
-        <input id="f_name" placeholder="Ваше имя" required>
-        <input id="f_email" placeholder="Email" required>
-        <input id="f_tg" placeholder="Telegram (не обязательно)">
+    <div class="features">
+      ✔ Стабильное и защищённое интернет-подключение<br>
+      ✔ Быстрый запуск без сложной настройки<br>
+      ✔ Данные и трафик под вашим контролем
+    </div>
 
-        <button id="chatFormBtn">Начать чат</button>
+    <div class="subtitle" style="font-size:13px;">
+      <span><span class="note-mark">i</span>После настройки вы самостоятельно управляете сервером и параметрами
+        подключения</span>
+    </div>
+
+    <div id="price" class="price">Загрузка...</div>
+    <div id="orderBox" class="order-box" style="display:none;">
+      <span id="orderLabel">🧾 Заказ: </span>
+      <span id="orderId"></span>
+    </div>
+    <div id="status" class="status"></div>
+    <div id="timer" class="timer"></div>
+
+    <form id="form">
+      <input class="inpt" type="text" name="name" placeholder="Ваше имя" required>
+      <input class="inpt" type="email" name="email" placeholder="Ваш email" required>
+      <input class="inpt" type="text" name="tg" placeholder="Telegram (не обязательно)">
+      <button class="btnActive" id="btn">Перейти к оплате</button>
+    </form>
+
+    <div class="footer">
+      После оплаты на указанную почту будет отправлен чек
+    </div>
+
+  </div>
+
+  <div id="chatWidget">
+    <div id="chatBubble">💬</div>
+
+    <div id="chatBox">
+      <div id="chatHeader">
+        Поддержка
+        <span id="chatClose">✕</span>
+      </div>
+      <div id="chatFormOverlay">
+        <div id="chatForm">
+          <div class="formTitle">Пожалуйста заполните поля для перехода в чат</div>
+
+          <input id="f_name" placeholder="Ваше имя" required>
+          <input id="f_email" placeholder="Email" required>
+          <input id="f_tg" placeholder="Telegram (не обязательно)">
+
+          <button id="chatFormBtn">Начать чат</button>
+        </div>
+      </div>
+      <div id="chatMessages"></div>
+
+      <div id="chatInputWrap">
+        <input id="chatInput" placeholder="Напишите сообщение...">
+        <button id="chatSend">➤</button>
       </div>
     </div>
-    <div id="chatMessages"></div>
-
-    <div id="chatInputWrap">
-      <input id="chatInput" placeholder="Напишите сообщение...">
-      <button id="chatSend">➤</button>
-    </div>
   </div>
-</div>
 
-<script>
-const API = "https://proxy-uxtj.onrender.com";
-const orderId = new URLSearchParams(location.search).get("order");
+  <script>
+    const API = "https://proxy-uxtj.onrender.com";
+    const orderId = new URLSearchParams(location.search).get("order");
 
-let paymentLink = null;
+    let paymentLink = null;
 
-const priceEl = document.getElementById("price");
-const statusEl = document.getElementById("status");
-const timerEl = document.getElementById("timer");
-const form = document.getElementById("form");
-const btn = document.getElementById("btn");
-const orderBox = document.getElementById("orderBox");
-const orderIdEl = document.getElementById("orderId");
+    const priceEl = document.getElementById("price");
+    const statusEl = document.getElementById("status");
+    const timerEl = document.getElementById("timer");
+    const form = document.getElementById("form");
+    const btn = document.getElementById("btn");
+    const orderBox = document.getElementById("orderBox");
+    const orderIdEl = document.getElementById("orderId");
 
-let orderData = null;
+    let orderData = null;
 
-// ===== LOAD =====
-async function loadOrder() {
+    // ===== LOAD =====
+    async function loadOrder() {
 
-  try {
-    const res = await fetch(API + "?order=" + orderId);
-    if (!res.ok) throw new Error();
+      try {
+        const res = await fetch(API + "?order=" + orderId);
+        if (!res.ok) throw new Error();
 
-    const data = await res.json();
-    orderData = data;
+        const data = await res.json();
+        orderData = data;
 
-    ym(108510887, 'reachGoal', 'open_payment_page');
+        ym(108510887, 'reachGoal', 'open_payment_page');
 
-    paymentLink = data.pay;
+        paymentLink = data.pay;
 
-    priceEl.innerText = data.price + " ₽";
+        priceEl.innerText = data.price + " ₽";
 
-    orderIdEl.innerText = orderId;
-    orderBox.style.display = "block";
+        orderIdEl.innerText = orderId;
+        orderBox.style.display = "block";
 
-    updateUI();
-    fillForm(data);
-    startTimer();
+        updateUI();
+        fillForm(data);
+        startTimer();
 
-  } catch {
-    priceEl.innerText = "❌ Ссылка недействительна";
-    disableAll();
-  }
-}
-
-const labelEl = document.getElementById("orderLabel");
-
-orderBox.addEventListener("click", () => {
-  navigator.clipboard.writeText(orderId);
-
-  labelEl.textContent = "✅ Скопировано";
-
-  setTimeout(() => {
-    labelEl.textContent = "🧾 Заказ: ";
-  }, 2000);
-});
-
-// ===== TIMER =====
-let timerInterval;
-
-function startTimer() {
-
-  if (!orderData.startedAt) return;
-
-  const end = orderData.startedAt + 60 * 60 * 1000;
-
-  clearInterval(timerInterval);
-
-  timerInterval = setInterval(() => {
-
-    if (orderData.status === "paid" || orderData.status === "checking") {
-      clearInterval(timerInterval);
-      timerEl.innerText = "";
-      return;
+      } catch {
+        priceEl.innerText = "❌ Ссылка недействительна";
+        disableAll();
+      }
     }
 
-    const left = end - Date.now();
+    const labelEl = document.getElementById("orderLabel");
 
-    if (left <= 0) {
-      statusEl.innerText = "❌ Ссылка истекла";
-      timerEl.innerText = "";
-      disableAll();
+    orderBox.addEventListener("click", () => {
+      navigator.clipboard.writeText(orderId);
+
+      labelEl.textContent = "✅ Скопировано";
+
+      setTimeout(() => {
+        labelEl.textContent = "🧾 Заказ: ";
+      }, 2000);
+    });
+
+    // ===== TIMER =====
+    let timerInterval;
+
+    function startTimer() {
+
+      if (!orderData.startedAt) return;
+
+      const end = orderData.startedAt + 60 * 60 * 1000;
+
       clearInterval(timerInterval);
-      return;
+
+      timerInterval = setInterval(() => {
+
+        if (orderData.status === "paid" || orderData.status === "checking") {
+          clearInterval(timerInterval);
+          timerEl.innerText = "";
+          return;
+        }
+
+        const left = end - Date.now();
+
+        if (left <= 0) {
+          statusEl.innerText = "❌ Ссылка истекла";
+          timerEl.innerText = "";
+          disableAll();
+          clearInterval(timerInterval);
+          return;
+        }
+
+        const m = Math.floor(left / 60000);
+        const s = Math.floor((left % 60000) / 1000);
+
+        timerEl.innerText = `${m}:${s.toString().padStart(2, '0')}`;
+
+      }, 1000);
     }
 
-    const m = Math.floor(left / 60000);
-    const s = Math.floor((left % 60000) / 1000);
+    // ===== UI =====
+    function updateUI() {
 
-    timerEl.innerText = `${m}:${s.toString().padStart(2,'0')}`;
+      if (!paymentLink) {
+        btn.classList.add("disabled");
+        btn.innerText = "Недоступно";
+      }
 
-  }, 1000);
-}
+      if (orderData.status === "new") {
+        statusEl.innerText = "⏳ Ожидает оплаты";
+      }
 
-// ===== UI =====
-function updateUI() {
+      if (orderData.status === "checking") {
+        statusEl.innerText = "⌛ Проверка оплаты...";
+        btn.classList.add("disabled");
+        btn.innerText = "Проверка...";
+      }
 
-  if (!paymentLink) {
-    btn.classList.add("disabled");
-    btn.innerText = "Недоступно";
-  }
+      if (orderData.status === "paid") {
+        statusEl.innerText = "✅ Оплачено";
+        disableAll();
+      }
 
-  if (orderData.status === "new") {
-    statusEl.innerText = "⏳ Ожидает оплаты";
-  }
+      if (orderData.status === "expired") {
+        statusEl.innerText = "❌ Ссылка истекла";
+        disableAll();
+      }
+    }
 
-  if (orderData.status === "checking") {
-    statusEl.innerText = "⌛ Проверка оплаты...";
-    btn.classList.add("disabled");
-    btn.innerText = "Проверка...";
-  }
+    // ===== FORM =====
+    function fillForm(data) {
 
-  if (orderData.status === "paid") {
-    statusEl.innerText = "✅ Оплачено";
-    disableAll();
-  }
+      if (!data.customer) return;
 
-  if (orderData.status === "expired") {
-    statusEl.innerText = "❌ Ссылка истекла";
-    disableAll();
-  }
-}
+      form.name.value = data.customer.name || "";
+      form.email.value = data.customer.email || "";
+      form.tg.value = data.customer.tg || "";
 
-// ===== FORM =====
-function fillForm(data) {
+      form.querySelectorAll("input").forEach(i => i.disabled = true);
+    }
 
-  if (!data.customer) return;
+    // ===== DISABLE =====
+    function disableAll() {
+      btn.classList.add("disabled");
+      form.querySelectorAll("input").forEach(i => i.disabled = true);
+    }
 
-  form.name.value = data.customer.name || "";
-  form.email.value = data.customer.email || "";
-  form.tg.value = data.customer.tg || "";
+    // ===== SUBMIT =====
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  form.querySelectorAll("input").forEach(i => i.disabled = true);
-}
+      if (!paymentLink) {
+        alert("Оплата недоступна");
+        return;
+      }
 
-// ===== DISABLE =====
-function disableAll() {
-  btn.classList.add("disabled");
-  form.querySelectorAll("input").forEach(i => i.disabled = true);
-}
+      btn.innerText = "Отправка...";
 
-// ===== SUBMIT =====
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+      await fetch(API + "/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          order: orderId,
+          name: form.name.value,
+          email: form.email.value,
+          tg: form.tg.value
+        })
+      });
 
-  if (!paymentLink) {
-    alert("Оплата недоступна");
-    return;
-  }
+      btn.innerText = "Переход...";
 
-  btn.innerText = "Отправка...";
+      setTimeout(() => {
+        window.location.href = paymentLink;
+      }, 500);
+    });
 
-  await fetch(API + "/submit", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      order: orderId,
-      name: form.name.value,
-      email: form.email.value,
-      tg: form.tg.value
-    })
-  });
+    // автообновление
+    setInterval(loadOrder, 5000);
 
-  btn.innerText = "Переход...";
+    // старт
+    loadOrder();
 
-  setTimeout(() => {
-    window.location.href = paymentLink;
-  }, 500);
-});
+  </script>
 
-// автообновление
-setInterval(loadOrder, 5000);
+  <script>
+    const API2 = "https://proxy-uxtj.onrender.com/chat";
 
-// старт
-loadOrder();
+    function getClientId() {
+      let id = localStorage.getItem("client_id");
+      if (!id) {
+        id = "c_" + crypto.randomUUID().slice(0, 8);
+        localStorage.setItem("client_id", id);
+      }
+      return id;
+    }
 
-</script>
+    const clientId = getClientId();
 
-<script>
-const API2 = "https://proxy-uxtj.onrender.com/chat";
+    const bubble = document.getElementById("chatBubble");
+    const box = document.getElementById("chatBox");
+    const closeBtn = document.getElementById("chatClose");
+    const sendBtn = document.getElementById("chatSend");
 
-function getClientId(){
-  let id = localStorage.getItem("client_id");
-  if (!id) {
-    id = "c_" + crypto.randomUUID().slice(0,8);
-    localStorage.setItem("client_id", id);
-  }
-  return id;
-}
+    const formOverlay = document.getElementById("chatFormOverlay");
+    const formBtn = document.getElementById("chatFormBtn");
+    const header = document.getElementById("chatHeader");
 
-const clientId = getClientId();
+    let operatorOnline = false;
 
-const bubble = document.getElementById("chatBubble");
-const box = document.getElementById("chatBox");
-const closeBtn = document.getElementById("chatClose");
-const sendBtn = document.getElementById("chatSend");
-
-const formOverlay = document.getElementById("chatFormOverlay");
-const formBtn = document.getElementById("chatFormBtn");
-const header = document.getElementById("chatHeader");
-
-let operatorOnline = false;
-
-function updateStatus(){
-  header.innerHTML = `
+    function updateStatus() {
+      header.innerHTML = `
     Поддержка 
     <span style="font-size:12px; opacity:0.8;">
       ${operatorOnline ? "🟢 онлайн" : "🔴 оффлайн"}
@@ -613,122 +684,122 @@ function updateStatus(){
     <span id="chatClose">✕</span>
   `;
 
-  document.getElementById("chatClose").onclick = () => {
-    box.style.display = "none";
-  };
-}
+      document.getElementById("chatClose").onclick = () => {
+        box.style.display = "none";
+      };
+    }
 
-function checkUser(){
-  return localStorage.getItem("user_saved") === "1";
-}
+    function checkUser() {
+      return localStorage.getItem("user_saved") === "1";
+    }
 
-bubble.onclick = () => {
-  box.style.display = "flex";
+    bubble.onclick = () => {
+      box.style.display = "flex";
 
-  if (!checkUser()) {
-    formOverlay.style.display = "flex";
-    setTimeout(() => {
-      document.getElementById("f_name").focus();
-    }, 100);
-  } else {
-    formOverlay.style.display = "none";
+      if (!checkUser()) {
+        formOverlay.style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("f_name").focus();
+        }, 100);
+      } else {
+        formOverlay.style.display = "none";
 
-    const el = document.getElementById("chatMessages");
-    el.scrollTop = el.scrollHeight;
-  }
-};
+        const el = document.getElementById("chatMessages");
+        el.scrollTop = el.scrollHeight;
+      }
+    };
 
-document.getElementById("chatInput").addEventListener("keydown", e=>{
-  if(e.key === "Enter") sendMsg();
-});
+    document.getElementById("chatInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") sendMsg();
+    });
 
-formBtn.onclick = () => {
+    formBtn.onclick = () => {
 
-  const name = document.getElementById("f_name").value.trim();
-  const email = document.getElementById("f_email").value.trim();
-  const tg = document.getElementById("f_tg").value.trim();
+      const name = document.getElementById("f_name").value.trim();
+      const email = document.getElementById("f_email").value.trim();
+      const tg = document.getElementById("f_tg").value.trim();
 
-  if (!name || !email) {
-    alert("Введите имя и email");
-    return;
-  }
+      if (!name || !email) {
+        alert("Введите имя и email");
+        return;
+      }
 
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
-  localStorage.setItem("tg", tg);
-  localStorage.setItem("user_saved", "1");
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("tg", tg);
+      localStorage.setItem("user_saved", "1");
 
-  formOverlay.style.display = "none";
+      formOverlay.style.display = "none";
 
-  loadChat();
-};
+      loadChat();
+    };
 
-sendBtn.onclick = sendMsg;
+    sendBtn.onclick = sendMsg;
 
-async function sendMsg(){
+    async function sendMsg() {
 
-  if (!checkUser()) {
-    formOverlay.style.display = "flex";
-    return;
-  }
+      if (!checkUser()) {
+        formOverlay.style.display = "flex";
+        return;
+      }
 
-  const input = document.getElementById("chatInput");
-  const text = input.value.trim();
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
 
-  if (!text) return;
+      if (!text) return;
 
-  const name = localStorage.getItem("name") || "";
-  const email = localStorage.getItem("email") || "";
-  const tg = localStorage.getItem("tg") || "";
+      const name = localStorage.getItem("name") || "";
+      const email = localStorage.getItem("email") || "";
+      const tg = localStorage.getItem("tg") || "";
 
-  await fetch(API2 + "/send", {
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body: JSON.stringify({
-      clientId,
-      text,
-      page: location.pathname,
-      name,
-      email,
-      tg
-    })
-  });
+      await fetch(API2 + "/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientId,
+          text,
+          page: location.pathname,
+          name,
+          email,
+          tg
+        })
+      });
 
-  input.value = "";
-  await loadChat();
-    
-    const el = document.getElementById("chatMessages");
-    el.scrollTop = el.scrollHeight;
-}
+      input.value = "";
+      await loadChat();
 
-async function loadChat(){
-  try {
-    const res = await fetch(API2 + "?client=" + clientId);
-    const data = await res.json();
+      const el = document.getElementById("chatMessages");
+      el.scrollTop = el.scrollHeight;
+    }
 
-    const el = document.getElementById("chatMessages");
+    async function loadChat() {
+      try {
+        const res = await fetch(API2 + "?client=" + clientId);
+        const data = await res.json();
 
-    if (!data.length) {
-      el.innerHTML = `
+        const el = document.getElementById("chatMessages");
+
+        if (!data.length) {
+          el.innerHTML = `
         <div class="msg msg-support">
           👋 Здравствуйте! Напишите ваш вопрос — мы ответим в ближайшее время.
           <div style="font-size:10px; opacity:0.7; margin-top:4px;">оператор</div>
         </div>
       `;
-      return;
-    }
+          return;
+        }
 
-    const lastSupport = data.filter(m => m.from === "support").slice(-1)[0];
+        const lastSupport = data.filter(m => m.from === "support").slice(-1)[0];
 
-    if (lastSupport && Date.now() - lastSupport.time < 5 * 60 * 1000) {
-      operatorOnline = true;
-    } else {
-      operatorOnline = false;
-    }
+        if (lastSupport && Date.now() - lastSupport.time < 5 * 60 * 1000) {
+          operatorOnline = true;
+        } else {
+          operatorOnline = false;
+        }
 
-    updateStatus();
+        updateStatus();
 
-    el.innerHTML = data.map(m => `
+        el.innerHTML = data.map(m => `
       <div class="msg ${m.from === "client" ? "msg-client" : "msg-support"}">
         ${escapeHtml(m.text)}
         <div style="font-size:10px; opacity:0.7; margin-top:4px;">
@@ -737,24 +808,25 @@ async function loadChat(){
       </div>
     `).join("");
 
-  //  el.scrollTop = el.scrollHeight;
+        //  el.scrollTop = el.scrollHeight;
 
-  } catch (e) {
-    console.error("load error", e);
-  }
-}
+      } catch (e) {
+        console.error("load error", e);
+      }
+    }
 
-function escapeHtml(text){
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
 
-setInterval(loadChat, 3000);
+    setInterval(loadChat, 3000);
 
-updateStatus();
-loadChat();
-</script>
+    updateStatus();
+    loadChat();
+  </script>
 </body>
+
 </html>
