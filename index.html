@@ -689,7 +689,7 @@
       </h1>
 
       <div class="subtitle">
-        Подключение за 24 часа • Работает на всех устройствах • Полный контроль
+        Подключение за 24 часа • Работает на всех устройствах • Приватность и безопасность
       </div>
 
       <div id="access" class="packs">
@@ -787,7 +787,15 @@
       </div>
 
       <div style="margin:20px 0;">
-        <b>3.</b> Вы получаете полный доступ и используете его без ограничений
+        <b>3.</b> Производим удаленное подключение ваших устройств к серверу
+      </div>
+
+      <div style="margin:20px 0;">
+        <b>4.</b> Вы получаете полный доступ и используете его без ограничений
+      </div>
+
+      <div style="margin:20px 0;">
+        <b>5.</b> Поддержка по любым вопросам
       </div>
 
     </div>
@@ -809,7 +817,7 @@
 
       <p style="margin-top:15px;">
         Все параметры подключения контролируете только вы.
-        Нагрузка, стабильность и качество соединения не зависят от сторонних пользователей.
+        Нагрузка, стабильность и качество соединения не зависят от сторонних пользователей (доступность серверов 99,98%).
       </p>
 
       <p style="margin-top:15px;">
@@ -880,7 +888,6 @@
 
     const clientId = getClientId();
 
-    //  const bubble = document.getElementById("chatBubble");
     const box = document.getElementById("chatBox");
     const closeBtn = document.getElementById("chatClose");
     const sendBtn = document.getElementById("chatSend");
@@ -930,8 +937,6 @@
         formOverlay.style.display = "none";
       }
     }
-
-    //  bubble.addEventListener("click", () => openChat());
 
     document.getElementById("chatInput").addEventListener("keydown", e => {
       if (e.key === "Enter") sendMsg();
@@ -1072,13 +1077,13 @@
   </script>
 
   <div style="
-  padding:50px 20px;
+  padding:20px 20px;
   text-align:center;
   background: rgba(0,0,0,0.7);
 ">
 
-    <div style="margin-top:25px; font-size:14px;">
-      <a style="font-size:18px; font-weight:600; margin-bottom:10px;">
+    <div style="font-size:14px;">
+      <a style="margin:0 10px;">
         TrueNET
       </a>
 
