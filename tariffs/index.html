@@ -182,24 +182,67 @@
 
       padding: 16px;
 
-      border-radius: 12px;
+      border-radius: 14px;
 
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.08);
 
       cursor: pointer;
 
-      background: linear-gradient(135deg, #1e40af, #2563eb);
+      background:
 
-      color: white;
+        linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+
+      color: #fff;
 
       font-size: 18px;
 
-    }
+      font-weight: 500;
 
-    #priceLabel {
+      box-shadow:
+
+        0 10px 30px rgba(37, 99, 235, 0.35),
+
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+      transition: all 0.2s ease;
 
       font-family: inherit;
+      position: relative;
 
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+
+      background:
+        linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+
+      box-shadow:
+        0 15px 40px rgba(37, 99, 235, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+
+      box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.35),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      pointer-events: none;
+
+      background: radial-gradient(circle at 50% 0%,
+          rgba(255, 255, 255, 0.25),
+          transparent 60%);
+
+      opacity: 0.6;
     }
 
     .footer {
@@ -730,7 +773,7 @@
 
       <div class="features">
         <div>✔ Настройка и запуск сервера</div>
-        <div>✔ Подключение 2 устройств (смартфон, ПК, ТВ)</div>
+        <div>✔ Подключение 3 устройств (смартфон, ПК, ТВ)</div>
         <div>✔ 1 месяц аренды сервера</div>
         <div>✔ 30 дней поддержки</div>
       </div>
@@ -767,7 +810,7 @@
 
         <div class="addon" onclick="toggleAddon(this,600)">
 
-          🔄 плюс 1 месяц поддержки
+          🔄 Плюс 1 месяц поддержки
 
           <div class="sub">+600 ₽</div>
 
@@ -776,8 +819,6 @@
       </div>
 
     </div>
-
-    <!-- ЗАКАЗ -->
 
     <button class="btn" onclick="createOrder()">
 
