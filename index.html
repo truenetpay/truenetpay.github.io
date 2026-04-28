@@ -401,7 +401,7 @@
       height: 64px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       background: rgba(10, 15, 25, 0.8);
       backdrop-filter: blur(20px);
       z-index: 1000;
@@ -602,7 +602,7 @@
 
     <div class="nav">
 
-      <a href="#access">Доступ</a>
+      <a onclick="goTariffs()">Тарифы</a>
 
       <a href="#howItWork">Как это работает</a>
 
@@ -622,7 +622,7 @@
 
   <div id="mobileMenu" class="mobile-menu">
 
-    <a href="#access">Доступ</a>
+    <a onclick="goTariffs()">Тарифы</a>
 
     <a href="#howItWork">Как это работает</a>
 
@@ -686,13 +686,9 @@
 
     <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.8;">
 
-      <div>✔ Стабильная работа без перебоев</div>
+      <div>✔ Стабильная работа без перебоев (доступность серверов 99,98%)</div>
 
-      <div>✔ Без ограничений скорости</div>
-
-      <div>✔ Только ваш доступ — без перегрузок</div>
-
-      <div>✔ До 20 устройств</div>
+      <div>✔ Только ваш доступ — без ограничений скорости</div>
 
       <div>✔ Настройка и запуск за 24 часа</div>
 
@@ -711,22 +707,18 @@
     <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.6;">
 
       <div style="margin:20px 0;">
-        <b>1.</b> Вы выбираете сервер и необходимые опции
+        <b>1.</b> Вы выбираете конфигурацию сервера и параметры подключения
       </div>
 
       <div style="margin:20px 0;">
-        <b>2.</b> Мы настраиваем сервер под Вас
+        <b>2.</b> Мы разворачиваем и настраиваем выделенный сервер под ваши задачи
       </div>
 
       <div style="margin:20px 0;">
-        <b>3.</b> Вы получаете доступ и пользуетесь без ограничений
+        <b>3.</b> Вы получаете полный доступ и используете его без ограничений
       </div>
 
     </div>
-
-    <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-      Перейти к выбору сервера
-    </button>
 
   </section>
 
@@ -739,49 +731,25 @@
     <div style="max-width:800px; margin:0 auto; font-size:16px; color:#cbd5e1; line-height:1.7;">
 
       <p>
-        Вы не используете общий сервис.
-        У вас собственный сервер — поэтому нет перегрузок и ограничений.
+        Вы используете не общий сервис, а выделенный сервер.
+        Ресурсы не делятся с другими пользователями — отсутствуют перегрузки и просадки скорости.
       </p>
 
       <p style="margin-top:15px;">
-        Доступ принадлежит только вам — никто не влияет на скорость и стабильность.
+        Все параметры подключения контролируете только вы.
+        Нагрузка, стабильность и качество соединения не зависят от сторонних пользователей.
       </p>
 
       <p style="margin-top:15px;">
-        Это решение используют как для личного использования, так и для работы и команд.
+        Решение подходит как для личного использования, так и для работы с высокой нагрузкой.
       </p>
 
     </div>
-
-  </section>
-
-  <section style="padding:60px 20px; text-align:center; background: rgba(0,0,0,0.55);">
-
-    <h2 style="font-size:28px; margin-bottom:20px;">
-      Подключение ограничено
-    </h2>
-
-    <div style="max-width:700px; margin:0 auto; font-size:16px; color:#cbd5e1;">
-
-      <p>
-        Лимитированное количество доступных серверов.
-      </p>
-
-      <p style="margin-top:10px;">
-        Иногда свободных ресурсов нет — подключение временно останавливается.
-      </p>
-
-    </div>
-
-    <button class="btn" onclick="goTariffs()" style="margin-top:30px;">
-      Получить свой сервер сейчас
-    </button>
 
   </section>
 
 
   <div id="chatWidget">
-    <div id="chatBubble">💬</div>
 
     <div id="chatOverlay"></div>
     <div id="chatBox">
@@ -849,7 +817,7 @@
 
     const clientId = getClientId();
 
-    const bubble = document.getElementById("chatBubble");
+    //  const bubble = document.getElementById("chatBubble");
     const box = document.getElementById("chatBox");
     const closeBtn = document.getElementById("chatClose");
     const sendBtn = document.getElementById("chatSend");
@@ -900,7 +868,7 @@
       }
     }
 
-    bubble.addEventListener("click", () => openChat());
+    //  bubble.addEventListener("click", () => openChat());
 
     document.getElementById("chatInput").addEventListener("keydown", e => {
       if (e.key === "Enter") sendMsg();
@@ -1050,10 +1018,6 @@
       TrueNET
     </div>
 
-    <div style="font-size:14px; color:#cbd5e1; max-width:500px; margin:0 auto;">
-      Стабильный и защищённый доступ к интернет-сервисам без ограничений скорости и качества соединения
-    </div>
-
     <div style="margin-top:25px; font-size:14px;">
       <a href="https://t.me/truenet_support" target="_blank"
         style="color:#93c5fd; text-decoration:none; margin:0 10px;">
@@ -1069,7 +1033,7 @@
 
     <div style="margin-top:20px; font-size:12px; color:#6b7280; max-width:600px; margin-left:auto; margin-right:auto;">
       Сервис предоставляет услуги по настройке и сопровождению серверных решений. Пользователь самостоятельно управляет
-      доступом и использованием сервиса.
+      доступом и использованием сервера.
     </div>
 
     <div style="margin-top:15px; font-size:12px; color:#4b5563;">
