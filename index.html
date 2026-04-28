@@ -91,10 +91,41 @@
       background: rgba(59, 130, 246, 0.15);
     }
 
+    .pack.active .pack-title {
+      color: #60a5fa;
+    }
+
     .pack p {
       margin-top: 10px;
       font-size: 14px;
       color: #cbd5e1;
+    }
+
+    .pack-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pack-features {
+      font-size: 14px;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pack-features div {
+      opacity: 0.9;
+    }
+
+    .pack-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9ca3af;
+      line-height: 1.4;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 10px;
     }
 
     .mini-trust {
@@ -386,14 +417,6 @@
       transform: translateY(3px);
     }
 
-    .link {
-      color: #25e0f6;
-    }
-
-    .email {
-      letter-spacing: 0.1em;
-    }
-
     .header {
       position: fixed;
       top: 0;
@@ -645,18 +668,41 @@
       <div id="access" class="packs">
 
         <div class="pack">
-          <b>Базовый доступ</b>
-          <p>
-            Подходит для стабильного доступа с умеренным использованием мобильного интернета<br>
-            Рекомендуется при использовании до ~15 ГБ зарубежного мобильного трафика в месяц </p>
+          <div class="pack-title">Базовый доступ</div>
+
+          <div class="pack-features">
+
+            <div>✔ Подходит для стабильного доступа</div>
+
+            <div>✔ Умеренное использование мобильного интернета</div>
+
+          </div>
+
+          <div class="pack-note">
+
+            Рекомендуется при использовании до ~15 ГБ зарубежного мобильного трафика в месяц
+
+          </div>
+
         </div>
 
         <div class="pack active">
-          <b>Расширенный доступ</b>
-          <p>
-            Подходит для активного использования на любых устройствах, включая мобильные<br>
+
+          <div class="pack-title">Расширенный доступ</div>
+
+          <div class="pack-features">
+
+            <div>✔ Подходит для активного использования</div>
+
+            <div>✔ На любых устройствах, включая мобильные</div>
+
+          </div>
+
+          <div class="pack-note">
+
             Обеспечивает стабильную работу без ограничений зарубежного мобильного трафика
-          </p>
+
+          </div>
         </div>
 
       </div>
