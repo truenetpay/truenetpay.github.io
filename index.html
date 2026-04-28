@@ -550,13 +550,29 @@
 
     .note-mark {
 
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 14px;
+
+      height: 14px;
+
       font-size: 10px;
 
-      vertical-align: super;
+      font-weight: 700;
 
-      margin-left: 2px;
+      border-radius: 50%;
 
-      opacity: 0.7;
+      background: rgba(59, 130, 246, 0.2);
+
+      color: #60a5fa;
+
+      margin-left: 5px;
+
+      cursor: pointer;
 
     }
 
@@ -732,8 +748,8 @@
 
           <div class="pack-note">
             Подходит для большинства пользователей.<br>
-            В текущих условиях работает без ограничений по <span class="accent">зарубежному мобильному трафику<sup
-                class="note-mark" onclick="scrollToNote()">*</sup></span>
+            В текущих условиях работает без ограничений по <span class="accent">зарубежному мобильному трафику<span
+                class="note-mark">i</span></span>
           </div>
 
         </div>
@@ -748,15 +764,15 @@
 
             <div>✔ Работает на всех устройствах</div>
 
-            <div>✔ Независим от ограничений по <span class="accent"> зарубежному мобильному трафику<sup
-                  class="note-mark" onclick="scrollToNote()">*</sup></span></div>
+            <div>✔ Независим от ограничений по <span class="accent"> зарубежному мобильному трафику<span
+                  class="note-mark">i</span></span></div>
 
           </div>
 
           <div class="pack-note">
             Подходит, если вы хотите стабильную работу<br>
-            независимо от возможных ограничений <span class="accent">зарубежного мобильного трафика<sup
-                class="note-mark" onclick="scrollToNote()">*</sup></span>
+            независимо от возможных ограничений <span class="accent">зарубежного мобильного трафика<span
+                class="note-mark">i</span></span>
           </div>
 
         </div>
@@ -766,7 +782,7 @@
 
       <div class="packs-disclaimer" id="traffic-note">
 
-        <span class="note-mark">*</span> В настоящий момент ограничения мобильного трафика отсутствуют, но условия могут
+        <span class="note-mark">i</span> В настоящий момент ограничения мобильного трафика отсутствуют, но условия могут
         изменяться операторами связи.
 
       </div>
@@ -850,12 +866,12 @@
       <p>
         Вы используете не общий сервис, а выделенный сервер.
         Ресурсы не делятся с другими пользователями — отсутствуют перегрузки и просадки скорости.
+        Бесперебойность работы серверов достигает 99,98%.
       </p>
 
       <p style="margin-top:15px;">
         Все параметры подключения контролируете только вы.
-        Нагрузка, стабильность и качество соединения не зависят от сторонних пользователей (доступность серверов
-        99,98%).
+        Нагрузка, стабильность и качество соединения не зависят от сторонних пользователей.
       </p>
 
       <p style="margin-top:15px;">
@@ -896,18 +912,24 @@
   </div>
 
   <script>
-    function scrollToNote() {
-      document.getElementById("traffic-note").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-  </script>
-
-  <script>
     function toggleMenu() {
       const menu = document.getElementById("mobileMenu");
       menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
+  </script>
+
+  <script>
+
+    function scrollToNote() {
+
+      document.getElementById("traffic-note").scrollIntoView({
+
+        behavior: "smooth"
+
+      });
+
+    }
+
   </script>
 
   <script>
